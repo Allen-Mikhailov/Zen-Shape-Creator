@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+    background-color: #363636;
+    overflow: hidden;
+}
+
+#shapeContainer {
+    position: absolute;
+    /* width: 100vw;
+    height: 100vh; */
+    pointer-events: none;
+}
+
+.shape {
+    /* position: absolute; */
+}
+
+.triangle {
+    fill: red;
+    pointer-events: all;
+}

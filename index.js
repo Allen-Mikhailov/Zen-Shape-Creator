@@ -2,6 +2,7 @@ const shapeContainer = document.getElementById("shapeContainer")
 const triangleButton = document.getElementById("CreateTriangle")
 
 const shapes = []
+let patterns = []
 
 let tool = "Move"
 
@@ -11,6 +12,7 @@ let DragStartY
 let xOffset;
 let yOffset;
 let startingAngle;
+
 
 function registerShape(div)
 {
@@ -33,12 +35,16 @@ function registerShape(div)
         yOffset = y-shape.y
         dragging = shape;
 
-        startingAngle = shape.angle || 0;
+        const originalAngle = Math.atan2(y-(dragging.y+dragging.height/2), x-(dragging.x+dragging.width/2))/Math.PI*180;
+
+        startingAngle = (shape.angle || 0) - originalAngle;
     }
 
     div.classList.add("shape")
     
     shape.div = div
+
+    shapes.push(shape)
 
     return shape
 }
@@ -63,6 +69,14 @@ triangleButton.onclick = CreateTriangle
 document.getElementById("MoveTool").onclick= () => tool = "Move"
 document.getElementById("RotateTool").onclick= () => tool = "Rotate"
 
+const rotGrid = 5
+const moveGrid = 2
+
+function grid(value, gri)
+{
+    return Math.floor(value/gri)*gri
+}
+
 document.onmousemove = (ev) => {
     const x = ev.clientX
     const y = ev.clientY
@@ -75,15 +89,22 @@ document.onmousemove = (ev) => {
         {
             dragging.x = (x-xOffset)
             dragging.y = (y-yOffset)
-            dragging.div.style.translate  = `${dragging.x/widthStuff}% ${dragging.y/widthStuff}%`
+            dragging.div.style.translate  = `${grid(dragging.x/widthStuff, moveGrid)}% ${grid(dragging.y/widthStuff, moveGrid)}%`
         } else if (tool == "Rotate") {
             const angle = Math.atan2(y-(dragging.y+dragging.height/2), x-(dragging.x+dragging.width/2))
-            dragging.angle = startingAngle + angle/Math.PI*180
+            dragging.angle = grid(startingAngle + angle/Math.PI*180, 5)
             dragging.div.style.transformOrigin = `5px 5px`
             dragging.div.style.rotate = `z ${dragging.angle}deg`
-
         }
     }
+}
+
+document.getElementById("SavePattern").onclick = () => {
+    patterns.push(structuredClone(shapes))
+}
+
+document.getElementById("Compile").onclick = () => {
+    
 }
 
 document.onmouseup = () => {

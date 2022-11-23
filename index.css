@@ -12,7 +12,8 @@ body {
 }
 
 .shape {
-    /* position: absolute; */
+    position: absolute;
+    /* transform-origin: 50% 50%; */
 }
 
 .triangle {

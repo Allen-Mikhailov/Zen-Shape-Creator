@@ -10,10 +10,10 @@ let DragStartX
 let DragStartY
 let xOffset;
 let yOffset;
+let startingAngle;
 
-function CreateShape(_type)
+function registerShape(div)
 {
-
     const shape = {
         x: 0,
         y: 0,
@@ -21,11 +21,8 @@ function CreateShape(_type)
         width: 100,
         rotation: 0
     }
-    const shapeDiv = document.createElementNS("http://www.w3.org/2000/svg", _type)
 
-    // shapeDiv.classList.add("shape")
-
-    shapeDiv.onmousedown = (ev) => {
+    div.onmousedown = (ev) => {
         const x = ev.clientX
         const y = ev.clientY
 
@@ -35,21 +32,30 @@ function CreateShape(_type)
         xOffset = x-shape.x
         yOffset = y-shape.y
         dragging = shape;
+
+        startingAngle = shape.angle || 0;
     }
+
+    div.classList.add("shape")
     
-    shape.div = shapeDiv
+    shape.div = div
 
     return shape
 }
 
 function CreateTriangle()
 {
-    const shape = CreateShape("path");
+    const baseGroup = document.createElementNS("http://www.w3.org/2000/svg", "g")
+    const triangle = document.createElementNS("http://www.w3.org/2000/svg", "path")
 
-    shape.div.setAttribute("d", "M 0 0 L 10 0 L 0 10")
-    shape.div.classList.add("triangle")
+    triangle.setAttribute("d", "M 0 0 L 10 0 L 0 10")
+    triangle.classList.add("triangle")
 
-    shapeContainer.appendChild(shape.div)
+    baseGroup.appendChild(triangle)
+
+    const shape = registerShape(baseGroup);
+
+    shapeContainer.appendChild(baseGroup)
 }
 
 // Buttons
@@ -71,9 +77,11 @@ document.onmousemove = (ev) => {
             dragging.y = (y-yOffset)
             dragging.div.style.translate  = `${dragging.x/widthStuff}% ${dragging.y/widthStuff}%`
         } else if (tool == "Rotate") {
-            const angle = Math.atan2(y-DragStartY, x-DragStartX)
-            dragging.angle = angle/Math.PI*180
+            const angle = Math.atan2(y-(dragging.y+dragging.height/2), x-(dragging.x+dragging.width/2))
+            dragging.angle = startingAngle + angle/Math.PI*180
+            dragging.div.style.transformOrigin = `5px 5px`
             dragging.div.style.rotate = `z ${dragging.angle}deg`
+
         }
     }
 }

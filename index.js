@@ -175,8 +175,6 @@ document.getElementById("Compile").onclick = () => {
         }
     }
 
-    console.log(shapes)
-
     // Basic File Starters
     let svgFile = SVGStart
     let styleSheet = baseStyleSheet
@@ -234,7 +232,13 @@ document.getElementById("Compile").onclick = () => {
 
     // Ending files and displaying somehow
     svgFile += SVGEnd
-    console.log(svgFile.replace("/* Styles */", styleSheet))
+    svgFile = svgFile.replace("/* Styles */", styleSheet)
+    console.log(svgFile)
+
+    // Displaying the compiled stuff
+    svgFile = svgFile.replaceAll("&", "&amp").replaceAll("<", "&lt").replaceAll(">", "&gt")
+    document.getElementById("compileDisplay").style.visibility = "visible"
+    document.getElementById("compiledText").innerHTML = svgFile
 }
 
 document.onmouseup = () => {

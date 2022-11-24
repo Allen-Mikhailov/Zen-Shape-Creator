@@ -14,14 +14,15 @@ let yOffset;
 let startingAngle;
 
 
-function registerShape(div)
+function registerShape(div, _type)
 {
     const shape = {
         x: 0,
         y: 0,
         height: 100,
         width: 100,
-        rotation: 0
+        rotation: 0,
+        type: _type
     }
 
     div.onmousedown = (ev) => {
@@ -51,15 +52,15 @@ function registerShape(div)
 
 function CreateTriangle()
 {
-    const baseGroup = document.createElementNS("http://www.w3.org/2000/svg", "g")
-    const triangle = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    const baseGroup = document.createElementNS(NSSvg, "g")
+    const triangle = document.createElementNS(NSSvg, "path")
 
-    triangle.setAttribute("d", "M 0 0 L 10 0 L 0 10")
+    triangle.setAttribute("d", trianglePath)
     triangle.classList.add("triangle")
 
     baseGroup.appendChild(triangle)
 
-    const shape = registerShape(baseGroup);
+    const shape = registerShape(baseGroup, "Triangle");
 
     shapeContainer.appendChild(baseGroup)
 }
@@ -104,7 +105,38 @@ document.getElementById("SavePattern").onclick = () => {
 }
 
 document.getElementById("Compile").onclick = () => {
-    
+    // Reorganizing data
+
+    const shapes = []
+
+    let shapeCount = 0
+    for (let shapeIndex in patterns[0])
+    {
+        const shape = patterns[0][shapeIndex]
+        shapes.push({
+            type: shape.type,
+            sects: []
+        })
+        shapeCount++;
+    }
+
+    for (let shapeIndex in patterns[0])
+    {
+        const shape = patterns[0][shapeIndex]
+        shapes.push({
+            type: shape.type,
+            sects: []
+        })
+        shapeCount++;
+    }
+
+    // Basic File Starters
+    let svgFile = SVGStart
+
+    // Creating the middle bulk of files
+
+    // Ending files and displaying somehow
+    svgFile += SVGEnd
 }
 
 document.onmouseup = () => {

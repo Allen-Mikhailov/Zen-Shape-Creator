@@ -74,7 +74,7 @@ document.getElementById("MoveTool").onclick= () => tool = "Move"
 document.getElementById("RotateTool").onclick= () => tool = "Rotate"
 
 const rotGrid = 5
-const moveGrid = 2
+const moveGrid = 1
 
 function grid(value, gri)
 {
@@ -159,6 +159,7 @@ document.getElementById("Compile").onclick = () => {
                 return `
                 {   
                     translate: ${grid(shape.x/widthStuff, moveGrid)}% ${grid(shape.y/widthStuff, moveGrid)}%;
+                    rotate: z ${shape.angle || 0}deg
                 }
                 `
             }

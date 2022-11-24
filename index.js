@@ -1,12 +1,14 @@
 const shapeContainer = document.getElementById("shapeContainer")
 const triangleButton = document.getElementById("CreateTriangle")
 
-const shapes = []
+const activeShapes = []
+const shapeDivs = []
 let patterns = []
 
 let tool = "Move"
 
 let dragging = null;
+let dragingDiv = null;
 let DragStartX
 let DragStartY
 let xOffset;
@@ -35,6 +37,7 @@ function registerShape(div, _type)
         xOffset = x-shape.x
         yOffset = y-shape.y
         dragging = shape;
+        dragingDiv = div
 
         const originalAngle = Math.atan2(y-(dragging.y+dragging.height/2), x-(dragging.x+dragging.width/2))/Math.PI*180;
 
@@ -43,9 +46,9 @@ function registerShape(div, _type)
 
     div.classList.add("shape")
     
-    shape.div = div
+    shapeDivs.push(div)
 
-    shapes.push(shape)
+    activeShapes.push(shape)
 
     return shape
 }
@@ -90,18 +93,18 @@ document.onmousemove = (ev) => {
         {
             dragging.x = (x-xOffset)
             dragging.y = (y-yOffset)
-            dragging.div.style.translate  = `${grid(dragging.x/widthStuff, moveGrid)}% ${grid(dragging.y/widthStuff, moveGrid)}%`
+            dragingDiv.style.translate  = `${grid(dragging.x/widthStuff, moveGrid)}% ${grid(dragging.y/widthStuff, moveGrid)}%`
         } else if (tool == "Rotate") {
             const angle = Math.atan2(y-(dragging.y+dragging.height/2), x-(dragging.x+dragging.width/2))
             dragging.angle = grid(startingAngle + angle/Math.PI*180, 5)
-            dragging.div.style.transformOrigin = `5px 5px`
-            dragging.div.style.rotate = `z ${dragging.angle}deg`
+            dragingDiv.style.transformOrigin = `5px 5px`
+            dragingDiv.style.rotate = `z ${dragging.angle}deg`
         }
     }
 }
 
 document.getElementById("SavePattern").onclick = () => {
-    patterns.push(structuredClone(shapes))
+    patterns.push(structuredClone(activeShapes))
 }
 
 document.getElementById("Compile").onclick = () => {
@@ -110,6 +113,7 @@ document.getElementById("Compile").onclick = () => {
     const shapes = []
 
     let shapeCount = 0
+    const patternCount = patterns.length
     for (let shapeIndex in patterns[0])
     {
         const shape = patterns[0][shapeIndex]
@@ -120,15 +124,16 @@ document.getElementById("Compile").onclick = () => {
         shapeCount++;
     }
 
-    for (let shapeIndex in patterns[0])
+    for (let patternIndex in patterns)
     {
-        const shape = patterns[0][shapeIndex]
-        shapes.push({
-            type: shape.type,
-            sects: []
-        })
-        shapeCount++;
+        const pattern = patterns[patternIndex]
+        for (let i = 0; i < shapeCount; i++)
+        {
+            shapes[i].sects.push(pattern[i])
+        }
     }
+
+    console.log(shapes)
 
     // Basic File Starters
     let svgFile = SVGStart

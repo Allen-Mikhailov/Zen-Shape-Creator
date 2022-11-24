@@ -21,3 +21,13 @@ body {
     fill: red;
     pointer-events: all;
 }
+
+.square {
+    fill: red;
+    pointer-events: all;
+}
+
+.halfCircle {
+    fill: red;
+    pointer-events: all;
+}

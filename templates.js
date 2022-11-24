@@ -17,7 +17,11 @@ const baseStyleSheet = `
     fill: red;
 }
 
-.square {
+.SquarePath {
+    fill: red;
+}
+
+.HalfCirclePath {
     fill: red;
 }
 `

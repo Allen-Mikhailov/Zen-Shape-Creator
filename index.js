@@ -140,6 +140,7 @@ document.getElementById("SavePattern").onclick = () => {
 }
 
 function sectForShape(shape) {
+    const widthStuff = shapeContainer.clientWidth / 100
     return `
     {   
         translate: ${grid(shape.x / widthStuff, moveGrid)}% ${grid(shape.y / widthStuff, moveGrid)}%;
@@ -184,31 +185,51 @@ document.getElementById("Compile").onclick = () => {
     for (const shapeIndex in shapes) {
         // Importing the svg text
         const shape = shapes[shapeIndex]
-        if (shape.type == "Triangle") {
-            svgFile += `
+
+        let shapeSVG = ""
+        switch(shape.type) {
+            case "Triangle":
+                shapeSVG = `
 <g id="shape${shapeIndex}">
-    <path class="TrianglePath" id="triangle${shapeIndex}" d="${trianglePath}"></path>
+    <path class="TrianglePath" id="shapePath${shapeIndex}" d="${trianglePath}"></path>
 </g>
 `
+                break;
+            case "Square":
+                shapeSVG = `
+<g id="shape${shapeIndex}">
+    <path class="SquarePath" id="shapePath${shapeIndex}" d="${squarePath}"></path>
+</g>
+`           
+                break;
+            case "HalfCircle":
+                    shapeSVG = `
+<g id="shape${shapeIndex}">
+    <path class="HalfCirclePath" id="shapePath${shapeIndex}" d="${halfCirclePath}"></path>
+</g>
+`           
+                    break;
+        }
+        svgFile += shapeSVG
 
-            styleSheet += `
-            @keyframes triangle${shapeIndex} {`
-            styleSheet += `0% ${sectForShape(shape.sects[patternCount - 1])}`
-            for (let i = 0; i < patternCount; i++) {
-                styleSheet += `${(i + 1) / patternCount * 100}% ${sectForShape(shape.sects[i])}`
-            }
+        styleSheet += `
+        @keyframes shape${shapeIndex}Anim {`
+        styleSheet += `0% ${sectForShape(shape.sects[patternCount - 1])}`
+        for (let i = 0; i < patternCount; i++) {
+            styleSheet += `${(i + 1) / patternCount * 100}% ${sectForShape(shape.sects[i])}`
+        }
 
-            styleSheet += `}`
+        styleSheet += `}`
 
-            styleSheet += `
+        styleSheet += `
 #shape${shapeIndex} {
     transform-origin: 5px 5px;
-    animation-name: triangle${shapeIndex};
+    animation-name: shape${shapeIndex}Anim;
     animation-duration: 4s;
     animation-iteration-count: infinite;
 }
 `
-        }
+        
     }
 
     // Ending files and displaying somehow

@@ -108,6 +108,9 @@ document.getElementById("SavePattern").onclick = () => {
 }
 
 document.getElementById("Compile").onclick = () => {
+    // Base Consts
+    const widthStuff = shapeContainer.clientWidth/100
+
     // Reorganizing data
 
     const shapes = []
@@ -137,11 +140,53 @@ document.getElementById("Compile").onclick = () => {
 
     // Basic File Starters
     let svgFile = SVGStart
+    let styleSheet = baseStyleSheet
 
     // Creating the middle bulk of files
+    for (const shapeIndex in shapes)
+    {
+        // Importing the svg text
+        const shape = shapes[shapeIndex]
+        if (shape.type == "Triangle")
+        {
+            svgFile += `
+<g id="shape${shapeIndex}">
+    <path class="TrianglePath" id="triangle${shapeIndex}" d="${trianglePath}"></path>
+</g>
+`
+            function sectForShape(shape)
+            {
+                return `
+                {   
+                    translate: ${grid(shape.x/widthStuff, moveGrid)}% ${grid(shape.y/widthStuff, moveGrid)}%;
+                }
+                `
+            }
+
+            styleSheet += `
+            @keyframes triangle${shapeIndex} {`
+            styleSheet += `0% ${sectForShape(shape.sects[patternCount-1])}`
+            for (let i = 0; i < patternCount; i++)
+            {
+                styleSheet += `${(i+1)/patternCount * 100}% ${sectForShape(shape.sects[i])}`
+            }
+
+            styleSheet += `}`
+
+            styleSheet += `
+#shape${shapeIndex} {
+    transform-origin: 5px 5px;
+    animation-name: triangle${shapeIndex};
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+`
+        }
+    }
 
     // Ending files and displaying somehow
     svgFile += SVGEnd
+    console.log(svgFile.replace("/* Styles */", styleSheet))
 }
 
 document.onmouseup = () => {

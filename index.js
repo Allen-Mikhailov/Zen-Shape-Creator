@@ -14,6 +14,14 @@ let xOffset;
 let yOffset;
 let startingAngle;
 
+function getShapePos(div)
+{
+    const rect = div.getBoundingClientRect()
+    return {
+        x: rect.left + (rect.right-rect.left)/2, 
+        y: rect.top + (rect.bottom-rect.top)/2
+    }
+}
 
 function registerShape(div, _type) {
     const shape = {
@@ -38,9 +46,10 @@ function registerShape(div, _type) {
         dragging = shape;
         dragingDiv = div
 
+        const pos = getShapePos(div)
         const originalAngle = Math.atan2(
-            y - (dragging.y + dragging.height / 2), 
-            x - (dragging.x + dragging.width / 2)) 
+            y - pos.y, 
+            x - pos.x) 
         / Math.PI * 180;
 
         startingAngle = (shape.angle || 0) - originalAngle;
@@ -127,7 +136,8 @@ document.onmousemove = (ev) => {
             dragging.y = (y - yOffset)
             dragingDiv.style.translate = `${grid(dragging.x / widthStuff, moveGrid)}% ${grid(dragging.y / widthStuff, moveGrid)}%`
         } else if (tool == "Rotate") {
-            const angle = Math.atan2(y - (dragging.y + dragging.height / 2), x - (dragging.x + dragging.width / 2))
+            const pos = getShapePos(dragingDiv)
+            const angle = Math.atan2(y - pos.y, x - pos.x)
             dragging.angle = grid(startingAngle + angle / Math.PI * 180, 5)
             dragingDiv.style.transformOrigin = `5px 5px`
             dragingDiv.style.rotate = `z ${dragging.angle}deg`

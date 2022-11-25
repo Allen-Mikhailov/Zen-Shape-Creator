@@ -17,6 +17,8 @@ body {
     border-width: 2px;
     border-style: solid;
     border-color: #363062;
+
+    border-radius: 2.5%;
 }
 
 .shape {

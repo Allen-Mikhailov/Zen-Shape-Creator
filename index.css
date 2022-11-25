@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    background-color: #363636;
+    background-color: #827397;
     overflow: hidden;
     user-select: none;
 }
@@ -9,7 +9,14 @@ body {
     position: absolute;
     /* width: 100vw;
     height: 100vh; */
+    width: 80vh;
+    height: 80vh;
+    left: calc(50% - 40vh);
+    top: 10vh;
     pointer-events: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #363062;
 }
 
 .shape {
@@ -39,21 +46,60 @@ body {
     border-radius: 10%;
     left: 20%;
     top: 10%;
-    background-color: #5a5a5a;
     visibility: hidden;
     overflow-x:hidden;
-    overflow-y:auto;
+
+    background-color: #4D4C7D;
+
+    border-width: 5px;
+    border-color: #363062;
+    border-style: solid;
 }
 
 #compiledText {
-    position: relative;
-    width: calc(100% - 25px);
-    height: calc(100% - 25px);
+    position: absolute;
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
     left: 25px;
+    top: 25px;
     word-wrap: normal;
-    color: black;
+    color: #E9D5CA;
+
+    overflow-x:hidden;
+    overflow-y:scroll;
 
     font-weight: 600;
     font-size: large;
     user-select: all;
+}
+
+#compiledText::-webkit-scrollbar {
+    display: none;
+  }
+
+#HideCompileDisplay {
+    position: absolute;
+    left: 93%;
+    top: 2%;
+    pointer-events: all;
+    color: #E9D5CA;
+    font-size: 40px;
+}
+
+button {
+    color: #E9D5CA;
+    background-color: #4D4C7D;
+
+    border-radius: 1vw;
+    border-width: 5px;
+    border-color: #363062;
+    border-style: solid;
+
+    font-size: large;
+
+    transition: border-radius 0.5s;
+}
+
+button:hover {
+    border-radius: 2vw;
 }

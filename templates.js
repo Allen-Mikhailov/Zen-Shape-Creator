@@ -1,7 +1,7 @@
 const NSSvg = "http://www.w3.org/2000/svg"
 
 const SVGStart = `
-<svg id="shapeContainer" viewBox="0 0 100 100" width="100vw" height="100vw" xmlns="${NSSvg}">
+<svg id="shapeContainer" viewBox="0 0 100 100" width="100vh" height="100vh" xmlns="${NSSvg}">
     <style>
         /* Styles */
     </style>

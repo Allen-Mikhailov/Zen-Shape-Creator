@@ -241,6 +241,14 @@ document.getElementById("Compile").onclick = () => {
     document.getElementById("compiledText").innerHTML = svgFile
 }
 
+function HidCompileDisplay()
+{
+    console.log("Test")
+    document.getElementById("compileDisplay").style.visibility = "hidden"
+}
+
+document.getElementById("HideCompileDisplay").onclick = HidCompileDisplay
+
 document.onmouseup = () => {
     dragging = null;
 }

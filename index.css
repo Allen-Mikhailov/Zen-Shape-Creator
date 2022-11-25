@@ -100,8 +100,15 @@ button {
     font-size: large;
 
     transition: border-radius 0.5s;
+    margin-bottom: .5em;
 }
 
 button:hover {
     border-radius: 2vw;
+}
+
+#CurrentTool {
+    margin-left: 2%;
+    color: #E9D5CA;
+    font-size: 2em;
 }

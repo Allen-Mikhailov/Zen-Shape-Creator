@@ -25,3 +25,16 @@ const baseStyleSheet = `
     fill: red;
 }
 `
+
+// Utils
+function distancePointOnLine([px, py], angle, [x, y])
+{
+    return Math.cos(angle)*(py-y) - Math.sin(angle)*(px-x)
+}
+
+function closestPointOnLine([px, py], angle, [x, y])
+{
+    const distance = distancePointOnLine([px, py], angle, [x, y])
+    const perpendicularA = angle
+    return [x + Math.cos(perpendicularA)*distance, y + Math.sin(perpendicularA)*distance]
+}

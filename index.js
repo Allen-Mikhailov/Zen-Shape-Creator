@@ -13,6 +13,7 @@ let DragStartY
 let xOffset;
 let yOffset;
 let startingAngle;
+let XLineDistance;
 
 function getShapePos(div)
 {
@@ -29,7 +30,7 @@ function registerShape(div, _type) {
         y: 0,
         height: 100,
         width: 100,
-        rotation: 0,
+        angle: 0,
         type: _type
     }
 
@@ -53,6 +54,10 @@ function registerShape(div, _type) {
         / Math.PI * 180;
 
         startingAngle = (shape.angle || 0) - originalAngle;
+
+        // Line Distance
+        const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])
+        XLineDistance = Math.sqrt(Math.pow(point[0]-pos.x, 2) + Math.pow(point[1]-pos.y, 2))
     }
 
     div.classList.add("shape")
@@ -114,8 +119,16 @@ document.getElementById("CreateHalfCircle").onclick = CreateHalfCircle
 
 //#endregion
 
-document.getElementById("MoveTool").onclick = () => tool = "Move"
-document.getElementById("RotateTool").onclick = () => tool = "Rotate"
+function UpdateTool(newTool)
+{
+    tool = newTool;
+    document.getElementById("CurrentTool").innerHTML = newTool
+}
+
+document.getElementById("MoveTool").onclick   = () => UpdateTool("Move")
+document.getElementById("RotateTool").onclick = () => UpdateTool("Rotate")
+document.getElementById("ScaleXTool").onclick = () => UpdateTool("ScaleX")
+document.getElementById("ScaleYTool").onclick = () => UpdateTool("ScaleY")
 
 const rotGrid = 5
 const moveGrid = 1
@@ -139,8 +152,15 @@ document.onmousemove = (ev) => {
             const pos = getShapePos(dragingDiv)
             const angle = Math.atan2(y - pos.y, x - pos.x)
             dragging.angle = grid(startingAngle + angle / Math.PI * 180, 5)
-            dragingDiv.style.transformOrigin = `5px 5px`
+            dragingDiv.style.transformOrigin = `${dragging.width/100 * 5}px ${dragging.height/100 * 5}px`
             dragingDiv.style.rotate = `z ${dragging.angle}deg`
+        } else if (tool == "ScaleX") {
+            const pos = getShapePos(dragingDiv)
+            const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])
+            const distance = Math.sqrt(Math.pow(point[0]-pos.x, 2) + Math.pow(point[1]-pos.y, 2))
+            console.log(distance, XLineDistance)
+            dragging.width = grid((distance-XLineDistance)/widthStuff*10, 1)
+            dragingDiv.style.scale= `${dragging.width}% ${dragging.height}%`
         }
     }
 }

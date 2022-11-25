@@ -13,7 +13,9 @@ let DragStartY
 let xOffset;
 let yOffset;
 let startingAngle;
+let startingDrag;
 let XLineDistance;
+let startingPos;
 
 function getShapePos(div)
 {
@@ -22,6 +24,11 @@ function getShapePos(div)
         x: rect.left + (rect.right-rect.left)/2, 
         y: rect.top + (rect.bottom-rect.top)/2
     }
+}
+
+function sizeUpdate(shape, div)
+{
+    div.style.scale= `${shape.width}% ${shape.height}%`
 }
 
 function registerShape(div, _type) {
@@ -48,6 +55,7 @@ function registerShape(div, _type) {
         dragingDiv = div
 
         const pos = getShapePos(div)
+        startingPos = pos
         const originalAngle = Math.atan2(
             y - pos.y, 
             x - pos.x) 
@@ -55,9 +63,31 @@ function registerShape(div, _type) {
 
         startingAngle = (shape.angle || 0) - originalAngle;
 
+        startingDrag = structuredClone(shape)
+
         // Line Distance
         const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])
         XLineDistance = Math.sqrt(Math.pow(point[0]-pos.x, 2) + Math.pow(point[1]-pos.y, 2))
+
+        switch (tool)
+        {
+            case "WidthUp":
+                shape.width += 10
+                sizeUpdate(shape, div)
+                break;
+            case "WidthDown":
+                shape.width -= 10
+                sizeUpdate(shape, div)
+                break;
+            case "HeightUp":
+                shape.height += 10
+                sizeUpdate(shape, div)
+                break;
+            case "HeightDown":
+                shape.height -= 10
+                sizeUpdate(shape, div)
+                break;
+        }
     }
 
     div.classList.add("shape")
@@ -127,8 +157,10 @@ function UpdateTool(newTool)
 
 document.getElementById("MoveTool").onclick   = () => UpdateTool("Move")
 document.getElementById("RotateTool").onclick = () => UpdateTool("Rotate")
-document.getElementById("ScaleXTool").onclick = () => UpdateTool("ScaleX")
-document.getElementById("ScaleYTool").onclick = () => UpdateTool("ScaleY")
+document.getElementById("WidthUpTool").onclick = () => UpdateTool("WidthUp")
+document.getElementById("WidthDownTool").onclick = () => UpdateTool("WidthDown")
+document.getElementById("HeightUpTool").onclick = () => UpdateTool("HeightUp")
+document.getElementById("HeightDownTool").onclick = () => UpdateTool("HeightDown")
 
 const rotGrid = 5
 const moveGrid = 1
@@ -149,18 +181,29 @@ document.onmousemove = (ev) => {
             dragging.y = (y - yOffset)
             dragingDiv.style.translate = `${grid(dragging.x / widthStuff, moveGrid)}% ${grid(dragging.y / widthStuff, moveGrid)}%`
         } else if (tool == "Rotate") {
-            const pos = getShapePos(dragingDiv)
+            const pos = startingPos
+            debugPoint(1, pos.x, pos.y)
             const angle = Math.atan2(y - pos.y, x - pos.x)
             dragging.angle = grid(startingAngle + angle / Math.PI * 180, 5)
-            dragingDiv.style.transformOrigin = `${dragging.width/100 * 5}px ${dragging.height/100 * 5}px`
+            dragingDiv.setAttribute("transform-origin", `${dragging.width/20} ${dragging.height/20}`)
+
+            // dragingDiv.style.transformOrigin = `${grid(dragging.x / widthStuff, moveGrid)}% ${grid(dragging.y / widthStuff, moveGrid)}%`
+            debugPoint(2,
+                dragging.width/20 * widthStuff + shapeContainer.getBoundingClientRect().left + dragging.x,
+                dragging.height/20 * widthStuff + shapeContainer.getBoundingClientRect().top + dragging.y
+                )
             dragingDiv.style.rotate = `z ${dragging.angle}deg`
         } else if (tool == "ScaleX") {
-            const pos = getShapePos(dragingDiv)
-            const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])
-            const distance = Math.sqrt(Math.pow(point[0]-pos.x, 2) + Math.pow(point[1]-pos.y, 2))
-            console.log(distance, XLineDistance)
-            dragging.width = grid((distance-XLineDistance)/widthStuff*10, 1)
-            dragingDiv.style.scale= `${dragging.width}% ${dragging.height}%`
+            // const pos = startingPos
+            // const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])
+            // debugPoint(3, point[0], point[1])
+            // const distance = Math.sqrt(Math.pow(point[0]-pos.x, 2) + Math.pow(point[1]-pos.y, 2))
+            // console.log(distance, XLineDistance)
+            // dragging.width = startingDrag.width + grid((distance-XLineDistance)/widthStuff*10, 10)
+            // dragingDiv.style.scale= `${dragging.width}% ${dragging.height}%`
+
+            // debugPoint(1, pos.x, pos.y)
+            // debugPoint(2, x, y)
         }
     }
 }

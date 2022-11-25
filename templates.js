@@ -27,6 +27,15 @@ const baseStyleSheet = `
 `
 
 // Utils
+
+function debugPoint(i, x, y)
+{
+    document.getElementById("DebugLine"+i).style.width = "0.1%"
+    document.getElementById("DebugLine"+i).style.height = "0.1%"
+    document.getElementById("DebugLine"+i).style.left = x+"px"
+    document.getElementById("DebugLine"+i).style.top = y+"px"
+}
+
 function distancePointOnLine([px, py], angle, [x, y])
 {
     return Math.cos(angle)*(py-y) - Math.sin(angle)*(px-x)
@@ -35,6 +44,6 @@ function distancePointOnLine([px, py], angle, [x, y])
 function closestPointOnLine([px, py], angle, [x, y])
 {
     const distance = distancePointOnLine([px, py], angle, [x, y])
-    const perpendicularA = angle
+    const perpendicularA = angle + Math.PI/2
     return [x + Math.cos(perpendicularA)*distance, y + Math.sin(perpendicularA)*distance]
 }

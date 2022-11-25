@@ -112,3 +112,11 @@ button:hover {
     color: #E9D5CA;
     font-size: 2em;
 }
+
+.DebugLine {
+    position: absolute;
+    background-color: blue;
+    border-width: 3px;
+    border-color: blue;
+    border-style: solid;
+}

@@ -17,7 +17,7 @@ let startingDrag;
 let XLineDistance;
 let startingPos;
 
-function getShapePos(div)
+function getDivPos(div)
 {
     const rect = div.getBoundingClientRect()
     return {
@@ -26,9 +26,61 @@ function getShapePos(div)
     }
 }
 
+const rotGrid = 5
+const moveGrid = 1
+
+function grid(value, gri) {
+    return Math.floor(value / gri) * gri
+}
+
+function getShapeSVGPosition(shape) 
+{
+    const boxWidth = document.getElementById("shapeContainer").clientWidth
+    const boxWidthToP = boxWidth / 100
+    const newx = grid(shape.x / boxWidthToP, moveGrid)// - dragging.width/20
+    const newy = grid(shape.y / boxWidthToP, moveGrid)// - dragging.height/20
+
+    return {
+        x: newx, y: newy
+    }
+}
+
+function getShapeSVGSize(shape)
+{
+    const boxWidth = document.getElementById("shapeContainer").clientWidth
+    const scaleConversion = boxWidth / 100 * 10 
+    return {width: shape.width / scaleConversion, height: shape.height / scaleConversion}
+}
+
 function sizeUpdate(shape, div)
 {
     div.style.scale= `${shape.width}% ${shape.height}%`
+}
+
+function calcOrigin(shape)
+{
+    return {x: shape.width/100*5, y: shape.height/100*5}
+}
+
+function getShapeTransform(shape)
+{
+    const pos = getShapeSVGPosition(shape)
+    const origin = calcOrigin(shape)
+
+    const originApply = `translate(${origin.x}%, ${origin.y}%)`
+    const originUndo = `translate(${-origin.x}%, ${-origin.y}%)`
+
+    const posString = `translate(${pos.x}%, ${pos.y}%)`
+    const rotationString = `rotateZ(${shape.angle}deg)`
+    const sizeString = `scale(${shape.width}%, ${shape.height}%)`
+    // Base 
+    return `${posString} ${originApply} ${rotationString} ${originUndo} ${sizeString}`
+}
+
+function updateShape(shape, div)
+{
+    div.style.transform = getShapeTransform(shape)
+    // div.style.transformOrigin = calcOrigin(shape)
 }
 
 function registerShape(div, _type) {
@@ -54,7 +106,7 @@ function registerShape(div, _type) {
         dragging = shape;
         dragingDiv = div
 
-        const pos = getShapePos(div)
+        const pos = getDivPos(div)
         startingPos = pos
         const originalAngle = Math.atan2(
             y - pos.y, 
@@ -73,19 +125,19 @@ function registerShape(div, _type) {
         {
             case "WidthUp":
                 shape.width += 10
-                sizeUpdate(shape, div)
+                updateShape(shape, div)
                 break;
             case "WidthDown":
                 shape.width -= 10
-                sizeUpdate(shape, div)
+                updateShape(shape, div)
                 break;
             case "HeightUp":
                 shape.height += 10
-                sizeUpdate(shape, div)
+                updateShape(shape, div)
                 break;
             case "HeightDown":
                 shape.height -= 10
-                sizeUpdate(shape, div)
+                updateShape(shape, div)
                 break;
         }
     }
@@ -162,13 +214,6 @@ document.getElementById("WidthDownTool").onclick = () => UpdateTool("WidthDown")
 document.getElementById("HeightUpTool").onclick = () => UpdateTool("HeightUp")
 document.getElementById("HeightDownTool").onclick = () => UpdateTool("HeightDown")
 
-const rotGrid = 5
-const moveGrid = 1
-
-function grid(value, gri) {
-    return Math.floor(value / gri) * gri
-}
-
 document.onmousemove = (ev) => {
     const x = ev.clientX
     const y = ev.clientY
@@ -179,20 +224,20 @@ document.onmousemove = (ev) => {
         if (tool == "Move") {
             dragging.x = (x - xOffset)
             dragging.y = (y - yOffset)
-            dragingDiv.style.translate = `${grid(dragging.x / widthStuff, moveGrid)}% ${grid(dragging.y / widthStuff, moveGrid)}%`
+
+            updateShape(dragging, dragingDiv)
         } else if (tool == "Rotate") {
             const pos = startingPos
             debugPoint(1, pos.x, pos.y)
             const angle = Math.atan2(y - pos.y, x - pos.x)
             dragging.angle = grid(startingAngle + angle / Math.PI * 180, 5)
-            dragingDiv.setAttribute("transform-origin", `${dragging.width/20} ${dragging.height/20}`)
-
+            updateShape(dragging, dragingDiv)
+            
             // dragingDiv.style.transformOrigin = `${grid(dragging.x / widthStuff, moveGrid)}% ${grid(dragging.y / widthStuff, moveGrid)}%`
             debugPoint(2,
                 dragging.width/20 * widthStuff + shapeContainer.getBoundingClientRect().left + dragging.x,
                 dragging.height/20 * widthStuff + shapeContainer.getBoundingClientRect().top + dragging.y
                 )
-            dragingDiv.style.rotate = `z ${dragging.angle}deg`
         } else if (tool == "ScaleX") {
             // const pos = startingPos
             // const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])

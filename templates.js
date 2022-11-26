@@ -28,12 +28,13 @@ const baseStyleSheet = `
 
 // Utils
 
+const pointWidth = 4
 function debugPoint(i, x, y)
 {
-    document.getElementById("DebugLine"+i).style.width = "0.1%"
-    document.getElementById("DebugLine"+i).style.height = "0.1%"
-    document.getElementById("DebugLine"+i).style.left = x+"px"
-    document.getElementById("DebugLine"+i).style.top = y+"px"
+    document.getElementById("DebugLine"+i).style.width = pointWidth+"px"
+    document.getElementById("DebugLine"+i).style.height = pointWidth+"px"
+    document.getElementById("DebugLine"+i).style.left = (x-pointWidth/2)+"px"
+    document.getElementById("DebugLine"+i).style.top = (y-pointWidth/2)+"px"
 }
 
 function distancePointOnLine([px, py], angle, [x, y])

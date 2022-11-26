@@ -13,16 +13,8 @@ const squarePath = "M 0 0 L 10 0 L 10 10 L 0 10 L 0 0"
 const halfCirclePath = "M 0 10 A 1 1 0 0 1 10 10"
 
 const baseStyleSheet = `
-.TrianglePath {
-    fill: red;
-}
-
-.SquarePath {
-    fill: red;
-}
-
-.HalfCirclePath {
-    fill: red;
+path {
+    fill: currentColor;
 }
 `
 

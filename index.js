@@ -80,6 +80,7 @@ function getShapeTransform(shape)
 function updateShape(shape, div)
 {
     div.style.transform = getShapeTransform(shape)
+    div.style.color = shape.color
     // div.style.transformOrigin = calcOrigin(shape)
 }
 
@@ -90,7 +91,8 @@ function registerShape(div, _type) {
         height: 100,
         width: 100,
         angle: 0,
-        type: _type
+        type: _type,
+        color: "blue"
     }
 
     div.onmousedown = (ev) => {
@@ -139,10 +141,15 @@ function registerShape(div, _type) {
                 shape.height -= 10
                 updateShape(shape, div)
                 break;
+            case "SetColor":
+                const color = document.getElementById("ColorInput").value
+                shape.color = color
+                updateShape(shape, div)
         }
     }
 
     div.classList.add("shape")
+    updateShape(shape, div)
 
     shapeDivs.push(div)
 
@@ -213,6 +220,7 @@ document.getElementById("WidthUpTool").onclick = () => UpdateTool("WidthUp")
 document.getElementById("WidthDownTool").onclick = () => UpdateTool("WidthDown")
 document.getElementById("HeightUpTool").onclick = () => UpdateTool("HeightUp")
 document.getElementById("HeightDownTool").onclick = () => UpdateTool("HeightDown")
+document.getElementById("SetColorTool").onclick = () => UpdateTool("SetColor")
 
 document.onmousemove = (ev) => {
     const x = ev.clientX
@@ -227,17 +235,9 @@ document.onmousemove = (ev) => {
 
             updateShape(dragging, dragingDiv)
         } else if (tool == "Rotate") {
-            const pos = startingPos
-            debugPoint(1, pos.x, pos.y)
-            const angle = Math.atan2(y - pos.y, x - pos.x)
+            const angle = Math.atan2(y - startingPos.y, x - startingPos.x)
             dragging.angle = grid(startingAngle + angle / Math.PI * 180, 5)
             updateShape(dragging, dragingDiv)
-            
-            // dragingDiv.style.transformOrigin = `${grid(dragging.x / widthStuff, moveGrid)}% ${grid(dragging.y / widthStuff, moveGrid)}%`
-            debugPoint(2,
-                dragging.width/20 * widthStuff + shapeContainer.getBoundingClientRect().left + dragging.x,
-                dragging.height/20 * widthStuff + shapeContainer.getBoundingClientRect().top + dragging.y
-                )
         } else if (tool == "ScaleX") {
             // const pos = startingPos
             // const point = closestPointOnLine([pos.x, pos.y], dragging.angle, [x, y])
@@ -258,18 +258,15 @@ document.getElementById("SavePattern").onclick = () => {
 }
 
 function sectForShape(shape) {
-    const widthStuff = shapeContainer.clientWidth / 100
     return `
     {   
-        translate: ${grid(shape.x / widthStuff, moveGrid)}% ${grid(shape.y / widthStuff, moveGrid)}%;
-        rotate: z ${shape.angle || 0}deg
+        transform: ${getShapeTransform(shape)};
+        color: ${shape.color};
     }
 `
 }
 
 document.getElementById("Compile").onclick = () => {
-    // Base Consts
-    const widthStuff = shapeContainer.clientWidth / 100
 
     // Reorganizing data
 
@@ -339,7 +336,6 @@ document.getElementById("Compile").onclick = () => {
 
         styleSheet += `
 #shape${shapeIndex} {
-    transform-origin: 5px 5px;
     animation-name: shape${shapeIndex}Anim;
     animation-duration: 4s;
     animation-iteration-count: infinite;

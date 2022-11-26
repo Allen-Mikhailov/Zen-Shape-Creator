@@ -23,21 +23,19 @@ body {
 
 .shape {
     position: absolute;
+    pointer-events: all;
     /* transform-origin: 50% 50%; */
 }
 
 .triangle {
-    fill: red;
     pointer-events: all;
 }
 
 .square {
-    fill: red;
     pointer-events: all;
 }
 
 .halfCircle {
-    fill: red;
     pointer-events: all;
 }
 
@@ -120,4 +118,14 @@ button:hover {
 
 #DebugLine2 {
     background-color: red;
+}
+
+#ColorInput {
+    border-style: none;
+    padding: 0%;
+    background-color: #ffffff00;
+}
+
+path {
+    fill: currentColor;
 }

@@ -6,6 +6,9 @@ let patterns = []
 
 let tool = "Move"
 
+const stallLength = 1
+const TransitionLength = 1
+
 let dragging = null;
 let dragingDiv = null;
 let DragStartX
@@ -273,7 +276,6 @@ document.getElementById("Compile").onclick = () => {
     const shapes = []
 
     let shapeCount = 0
-    const patternCount = patterns.length
     for (let shapeIndex in patterns[0]) {
         const shape = patterns[0][shapeIndex]
         shapes.push({
@@ -282,6 +284,12 @@ document.getElementById("Compile").onclick = () => {
         })
         shapeCount++;
     }
+
+    const patternCount = patterns.length
+    const time = patternCount * (stallLength + TransitionLength)
+    const sectionLength = 100 / patternCount
+    const stallPercent = stallLength/(stallLength+TransitionLength) * sectionLength
+    const TransitionPercent = TransitionLength/(stallLength+TransitionLength)  * sectionLength
 
     for (let patternIndex in patterns) {
         const pattern = patterns[patternIndex]
@@ -298,6 +306,8 @@ document.getElementById("Compile").onclick = () => {
     for (const shapeIndex in shapes) {
         // Importing the svg text
         const shape = shapes[shapeIndex]
+
+        let currentPercent = 0
 
         let shapeSVG = ""
         switch(shape.type) {
@@ -327,17 +337,23 @@ document.getElementById("Compile").onclick = () => {
 
         styleSheet += `
         @keyframes shape${shapeIndex}Anim {`
-        styleSheet += `0% ${sectForShape(shape.sects[patternCount - 1])}`
+        styleSheet += `${currentPercent}% ${sectForShape(shape.sects[patternCount - 1])}\n`
+
         for (let i = 0; i < patternCount; i++) {
-            styleSheet += `${(i + 1) / patternCount * 100}% ${sectForShape(shape.sects[i])}`
+            styleSheet += `${currentPercent}% ${sectForShape(shape.sects[i])}`
+            currentPercent += stallPercent
+            styleSheet += `${currentPercent}% ${sectForShape(shape.sects[i])}`
+            currentPercent += TransitionPercent
         }
+
+        styleSheet += `100% ${sectForShape(shape.sects[0])}`
 
         styleSheet += `}`
 
         styleSheet += `
 #shape${shapeIndex} {
     animation-name: shape${shapeIndex}Anim;
-    animation-duration: 4s;
+    animation-duration: ${time}s;
     animation-iteration-count: infinite;
 }
 `

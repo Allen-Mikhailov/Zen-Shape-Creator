@@ -10,7 +10,7 @@ body {
     font-family: Consolas, 'Courier New', monospace;
 }
 
-#topBar {
+#top-bar {
     position: absolute;
     width: 100vw;
     height: 12.5vh;
@@ -40,12 +40,12 @@ body {
     font-size: 150%;
 }
 
-#section-picker[data-section="shapes"]   > #section-picker-shapes {
+#top-bar[data-section="shapes"] > div > #section-picker-shapes {
     color:         var(--active-text);
     border-bottom: var(--border-size) solid #ffc400;
 }
 
-#section-picker[data-section="settings"] > #section-picker-settings {
+#top-bar[data-section="settings"] > div > #section-picker-settings {
     color:         var(--active-text);
     border-bottom: var(--border-size) solid #ffc400;
 }

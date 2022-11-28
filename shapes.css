@@ -1,0 +1,34 @@
+.shape {
+    position: absolute;
+    pointer-events: all;
+}
+
+path {
+    fill: currentColor;
+}
+
+.GridLine {
+    position: absolute;
+    fill:var(--container-color);
+}
+
+.verticalLine {
+    width: .25px;
+    height: 100%;
+    translate: calc(50% - .25px / 2);
+}
+
+.horizontalLine {
+    height: .25px;
+    width: 100%;
+    translate: 0px calc(50% - .25px / 2);
+}
+
+.DebugLine {
+    position: absolute;
+    background-color: blue;
+}
+
+#DebugLine2 {
+    background-color: red;
+}

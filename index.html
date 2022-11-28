@@ -2,24 +2,37 @@
 <html>
     <head>
         <title>Zen-Shape-Creator</title>
-        <link rel="stylesheet" href="./index.css">
+        <!-- <link rel="stylesheet" href="./index.css"> -->
+        <link rel="stylesheet" href="./variables.css">
+        <link rel="stylesheet" href="./baseUI.css">
+        <link rel="stylesheet" href="./shapes.css">
     </head>
     <body>
+        <div id="topBar">
+            <div id="title">Zen-Shape-Creator</div>
+            <div id="section-picker" data-section="shapes">
+                <span id="section-picker-shapes" class="section-picker-button">Shapes</span>
+                <span id="section-picker-settings" class="section-picker-button">Settings</span>
+            </div>
+        </div>
+
         <svg id="shapeContainer" viewBox="0 0 100 100">
+            <!-- <rect class="GridLine verticalLine"></rect>
+            <rect class="GridLine horizontalLine"></rect> -->
         </svg>
 
-        <div id="compileDisplay">
+        <!-- <div id="compileDisplay">
             <code id="compiledText"></code>
             <div id = "HideCompileDisplay">X</div>
         </div>
 
-        <!-- Create Object  -->
+        Create Object 
         <button id="CreateTriangle">Create Triangle</button>
         <button id="CreateSquare">Create Square</button>
         <button id="CreateHalfCircle">Create Half Circle</button>
         <br>
 
-        <!-- Tools -->
+        Tools
         <button id="MoveTool">Move</button>
         <button id="RotateTool">Rotate</button>
 
@@ -31,7 +44,7 @@
         <input type="color" id="ColorInput" name="lname">
         <br>
 
-        <!-- Patterns -->
+        Patterns
         <button id="SavePattern">Save Pattern</button>
         <button id="Compile">Compile</button>
         <br>
@@ -39,7 +52,7 @@
         <script src="./templates.js"></script>
         <script src="./index.js"></script>
         <br>
-        <div id="CurrentTool">Move</div>
+        <div id="CurrentTool">Move</div> -->
 
         <!-- <div id="DebugLine1" class="DebugLine"></div>
         <div id="DebugLine2" class="DebugLine"></div>

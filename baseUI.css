@@ -49,3 +49,13 @@ body {
     color:         var(--active-text);
     border-bottom: var(--border-size) solid #ffc400;
 }
+
+.tool-selection {
+    width: 4em;
+    height: 4em;
+    display: inline;
+}
+
+#move-tool {
+    
+}

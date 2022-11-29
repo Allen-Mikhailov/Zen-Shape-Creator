@@ -94,7 +94,7 @@ body {
 
 #top-bar[data-tool="move"] > div > #move-tool {
     background-color: $selected-tool;
-    div {
+    > div {
         filter: invert(100%);
     }
 }
@@ -105,7 +105,7 @@ body {
 
 #top-bar[data-tool="rotate"] > div > #rotate-tool {
     background-color: $selected-tool
-    div {
+    > div {
         filter: invert(100%);
     }
 }

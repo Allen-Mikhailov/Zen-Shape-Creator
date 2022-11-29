@@ -1,0 +1,124 @@
+div {
+  color: var(--text-color);
+}
+
+body {
+  margin: 0px;
+  background-color: var(--body-color);
+  overflow: hidden;
+  user-select: none;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+#top-bar {
+  position: absolute;
+  width: 100vw;
+  height: 12.5vh;
+  border-bottom: 2px solid var(--line-color);
+  display: inline-block;
+}
+
+#title {
+  font-size: 4vh;
+  top: 1.25vh;
+  left: 1.25vh;
+  position: absolute;
+}
+
+#section-picker {
+  display: inline;
+  position: absolute;
+  left: 75%;
+  top: 30%;
+}
+
+.section-picker-button {
+  display: inline;
+  /* margin-left: 1%; */
+  color: var(--unactive-text);
+  padding-bottom: 2px;
+  font-size: 150%;
+}
+
+#top-bar[data-section=shapes] > div > #section-picker-shapes {
+  color: var(--active-text);
+  border-bottom: var(--border-size) solid #ffc400;
+}
+
+#top-bar[data-section=settings] > div > #section-picker-settings {
+  color: var(--active-text);
+  border-bottom: var(--border-size) solid #ffc400;
+}
+
+#tool-selection {
+  position: absolute;
+  left: 2em;
+  top: 3.5em;
+  background-color: rgba(248, 248, 248, 0.1647058824);
+  height: 1.75em;
+  border-radius: 0.5em;
+}
+
+.tool-button {
+  /* position: absolute; */
+  width: 1.75em;
+  height: 1.75em;
+  display: inline-block;
+  border-radius: 0.5em;
+  transition: background-color 0.5s;
+}
+.tool-button > div {
+  width: 100%;
+  height: 100%;
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  filter: invert(100%) brightness(50%);
+  transition: filter 0.5s;
+}
+
+#move-tool > div {
+  background-image: url("../icons/move.png");
+}
+
+#top-bar[data-tool=move] > div > #move-tool {
+  background-color: var(--selected-tool);
+}
+#top-bar[data-tool=move] > div > #move-tool div {
+  filter: invert(100%);
+}
+
+#rotate-tool > div {
+  background-image: url("../icons/rotate.png");
+}
+
+#top-bar[data-tool=rotate] > div > #rotate-tool {
+  background-color: var(--selected-tool);
+}
+#top-bar[data-tool=rotate] > div > #rotate-tool div {
+  filter: invert(100%);
+}
+
+#scale-tool > div {
+  background-image: url("../icons/scale.png");
+}
+
+#top-bar[data-tool=scale] > div > #scale-tool {
+  background-color: var(--selected-tool);
+}
+#top-bar[data-tool=scale] > div > #scale-tool div {
+  filter: invert(100%);
+}
+
+#color-tool > div {
+  background-image: url("../icons/color.png");
+}
+
+#top-bar[data-tool=color] > div > #color-tool {
+  background-color: var(--selected-tool);
+}
+#top-bar[data-tool=color] > div > #color-tool div {
+  filter: invert(100%);
+}
+
+/*# sourceMappingURL=base-ui.css.map */

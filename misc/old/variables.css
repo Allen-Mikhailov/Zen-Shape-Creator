@@ -6,4 +6,6 @@
     --unactive-text: #7a7a7a;
     --active-text: #bdbdbd;
     --border-size: 3px;
+
+    --selected-tool: #abc0f173;
 }

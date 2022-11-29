@@ -1,12 +1,12 @@
 @use "vars";
 
 div {
-    color: var(--text-color);
+    color: $text-color;
 }
 
 body {
     margin: 0px;
-    background-color: var(--body-color);
+    background-color: $body-color;
     overflow: hidden;
     user-select: none;
     font-family: Consolas, 'Courier New', monospace;
@@ -16,7 +16,7 @@ body {
     position: absolute;
     width: 100vw;
     height: 12.5vh;
-    border-bottom: 2px solid var(--line-color);
+    border-bottom: 2px solid $line-color;
     display:inline-block;
 }
 
@@ -37,19 +37,19 @@ body {
 .section-picker-button {
     display:inline;
     /* margin-left: 1%; */
-    color: var(--unactive-text);
+    color: $unactive-text;
     padding-bottom: 2px;
     font-size: 150%;
 }
 
 #top-bar[data-section="shapes"] > div > #section-picker-shapes {
-    color:         var(--active-text);
-    border-bottom: var(--border-size) solid #ffc400;
+    color:         $active-text;
+    border-bottom: $border-size solid #ffc400;
 }
 
 #top-bar[data-section="settings"] > div > #section-picker-settings {
-    color:         var(--active-text);
-    border-bottom: var(--border-size) solid #ffc400;
+    color:         $active-text;
+    border-bottom: $border-size solid #ffc400;
 }
 
 #tool-selection {
@@ -72,7 +72,7 @@ body {
     transition: background-color .5s;
 
     :hover {
-        background-color: var(--selected-tool);
+        background-color: $selected-tool;
     }
 
     > div {
@@ -93,7 +93,7 @@ body {
 }
 
 #top-bar[data-tool="move"] > div > #move-tool {
-    background-color: var(--selected-tool);
+    background-color: $selected-tool;
     div {
         filter: invert(100%);
     }
@@ -104,7 +104,7 @@ body {
 }
 
 #top-bar[data-tool="rotate"] > div > #rotate-tool {
-    background-color: var(--selected-tool);
+    background-color: $selected-tool
     div {
         filter: invert(100%);
     }
@@ -115,7 +115,7 @@ body {
 }
 
 #top-bar[data-tool="scale"] > div > #scale-tool {
-    background-color: var(--selected-tool);
+    background-color: selected-tool;
     div {
         filter: invert(100%);
     }
@@ -126,7 +126,7 @@ body {
 }
 
 #top-bar[data-tool="color"] > div > #color-tool {
-    background-color: var(--selected-tool);
+    background-color: $selected-tool;
     div {
         filter: invert(100%);
     }

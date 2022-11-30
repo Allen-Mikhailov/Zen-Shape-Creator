@@ -111,7 +111,7 @@ body {
     filter: invert(100%);
 }
 
-#color-tool > div {
+#color-tool div {
     background-image: url("./icons/color.png");
 }
 

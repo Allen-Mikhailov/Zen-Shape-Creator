@@ -125,8 +125,11 @@ $button-size: 3.5vh;
     @include tool-selected()
 }
 
-#color-tool > div {
-    background-image: url("../img/color.png");
+#color-tool {
+    margin-right: 0px;
+    div {
+        background-image: url("../img/color.png");
+    }
 }
 
 #top-bar[data-tool="color"] > div > #color-tool {

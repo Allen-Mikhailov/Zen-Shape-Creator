@@ -116,7 +116,10 @@ body {
   filter: invert(100%) !important;
 }
 
-#color-tool > div {
+#color-tool {
+  margin-right: 0px;
+}
+#color-tool div {
   background-image: url("../img/color.png");
 }
 

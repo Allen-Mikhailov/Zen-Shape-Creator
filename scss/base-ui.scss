@@ -1,4 +1,4 @@
-@use "vars";
+@use "./vars.scss" as *;
 
 div {
     color: $text-color;
@@ -52,32 +52,37 @@ body {
     border-bottom: $border-size solid #ffc400;
 }
 
+$button-size: 3.5vh;
 #tool-selection {
     position: absolute;
-    left: 2em;
-    top: 3.5em;
+    left: 5vh;
+    top: 7vh;
     background-color: #f8f8f82a;
-    height: 1.75em;
-    border-radius: .5em;
+    height: $button-size;
+    border-radius: 1vh;
+    font-size: 0px;
 }
 
 .tool-button {
     /* position: absolute; */
-    width: 1.75em;
-    height: 1.75em;
+    width: $button-size;
+    height: $button-size;
     display: inline-block;
 
-    border-radius: .5em;
+    border-radius: 1vh;
+    margin-right: .5vh;
 
     transition: background-color .5s;
 
-    :hover {
-        background-color: $selected-tool;
+    &:hover {
+        background-color: $hovered-tool;
     }
 
-    > div {
+    div {
         width: 100%;
         height: 100%;
+
+        border-radius: 1vh;
 
         background-size: 80% 80%;
         background-repeat: no-repeat;
@@ -89,45 +94,41 @@ body {
 }
 
 #move-tool > div {
-    background-image: url("../icons/move.png");
+    background-image: url("../img/move.png");
+}
+
+
+@mixin tool-selected {
+    background-color: $selected-tool !important;
+    div {
+        filter: invert(100%) !important;
+    }
 }
 
 #top-bar[data-tool="move"] > div > #move-tool {
-    background-color: $selected-tool;
-    > div {
-        filter: invert(100%);
-    }
+    @include tool-selected()
 }
 
 #rotate-tool > div{
-    background-image: url("../icons/rotate.png");
+    background-image: url("../img/rotate.png");
 }
 
 #top-bar[data-tool="rotate"] > div > #rotate-tool {
-    background-color: $selected-tool
-    > div {
-        filter: invert(100%);
-    }
+    @include tool-selected()
 }
 
 #scale-tool > div {
-    background-image: url("../icons/scale.png");
+    background-image: url("../img/scale.png");
 }
 
 #top-bar[data-tool="scale"] > div > #scale-tool {
-    background-color: selected-tool;
-    div {
-        filter: invert(100%);
-    }
+    @include tool-selected()
 }
 
 #color-tool > div {
-    background-image: url("../icons/color.png");
+    background-image: url("../img/color.png");
 }
 
 #top-bar[data-tool="color"] > div > #color-tool {
-    background-color: $selected-tool;
-    div {
-        filter: invert(100%);
-    }
+    @include tool-selected()
 }

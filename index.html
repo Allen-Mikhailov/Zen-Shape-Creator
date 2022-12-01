@@ -3,7 +3,7 @@
     <head>
         <title>Zen-Shape-Creator</title>
         <link rel="stylesheet" href="./css/base-ui.css">
-        <link rel="stylesheet" href="./shapes.css">
+        <link rel="stylesheet" href="./css/shapes.css">
     </head>
     <body>
         <div id="top-bar" data-section="shapes" data-tool="move">
@@ -12,19 +12,29 @@
                 <span id="section-picker-shapes" class="section-picker-button">Shapes</span>
                 <span id="section-picker-settings" class="section-picker-button">Settings</span>
             </div>
-            <div id="tool-selection">
+
+            <div id="create-tool-selection" class="tool-selection">
+                <div id="square-tool" class="tool-button"><div></div></div>
+                <div id="triangle-tool" class="tool-button"><div></div></div>
+                <div id="semi-circle-tool" class="tool-button"><div></div></div>
+                <!-- <div id="color-tool" class="tool-button"><div></div></div> -->
+            </div>
+
+            <div id="edit-tool-selection" class="tool-selection">
                 <div id="move-tool" class="tool-button"><div></div></div>
                 <div id="rotate-tool" class="tool-button"><div></div></div>
                 <div id="scale-tool" class="tool-button"><div></div></div>
                 <div id="color-tool" class="tool-button"><div></div></div>
             </div>
+
         </div>
 
-        <svg id="shapeContainer" viewBox="0 0 100 100">
+        <svg id="shape-container" viewBox="0 0 100 100">
             <!-- <rect class="GridLine verticalLine"></rect>
             <rect class="GridLine horizontalLine"></rect> -->
         </svg>
 
+        <script src="./js/settings.js"></script>
         <script src="./js/top-bar.js"></script>
 
         <!-- <div id="compileDisplay">

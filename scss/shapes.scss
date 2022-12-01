@@ -1,1 +1,14 @@
-@use "/scss/vars.scss" as *;
+@use "./vars.scss" as *;
+
+#shape-container {
+    position: absolute;
+    width: $container-size;
+    height: $container-size;
+    left: calc(50% - $container-size / 2);
+    top: calc(55% - $container-size / 2);
+
+    border-radius: 5vh;
+    border-color: $line-color;
+    border-width: $border-size;
+    border-style: solid;
+}

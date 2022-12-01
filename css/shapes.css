@@ -1,0 +1,13 @@
+#shape-container {
+  position: absolute;
+  width: 80vh;
+  height: 80vh;
+  left: calc(50% - 40vh);
+  top: calc(55% - 40vh);
+  border-radius: 5vh;
+  border-color: #1A1F29;
+  border-width: 2px;
+  border-style: solid;
+}
+
+/*# sourceMappingURL=shapes.css.map */

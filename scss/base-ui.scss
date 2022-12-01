@@ -12,6 +12,17 @@ body {
     font-family: Consolas, 'Courier New', monospace;
 }
 
+@mixin top-bar-section {
+    position: absolute;
+    visibility: hidden;
+    width: 50%;
+    height: 50%;
+}
+
+#shapes-section {
+    @include top-bar-section;
+}
+
 #top-bar {
     position: absolute;
     width: 100vw;

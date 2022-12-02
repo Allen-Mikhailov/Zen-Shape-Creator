@@ -54,6 +54,6 @@ document.onmousemove = (e) => {
         const apos = getMousePos(e);
         ghostShape.x = apos.x;
         ghostShape.y = apos.y;
-        updateShape(ghostDiv, ghostShape);
+        updateShape(ghostShape, ghostDiv);
     }
 }

@@ -1,5 +1,6 @@
 let originalTool=tool;
 let ghostShape;
+let ghostDiv;
 
 function setTool(t)
 {
@@ -17,6 +18,7 @@ function setTool(t)
         case "square":
             ghostShape = shapeClass();
             const div = document.createElement("div");
+            ghostDiv = div;
             
             div.classList.add("shape");
             document.getElementById("shape-container").appenChild(div);
@@ -47,8 +49,11 @@ function onMouseDown(e, div, shape)
 }
 
 document.onmousemove = (e) => {
-    const mouseX = e.clientX
-    const mouseY = e.clientX
-    
-    
+    if (ghostShape)
+    {
+        const apos = getMousePos(e);
+        ghostShape.x = apos.x;
+        ghostShape.y = apos.y;
+        updateShape(ghostDiv, ghostShape);
+    }
 }

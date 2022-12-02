@@ -8,6 +8,20 @@ function getMousePos(x, y)
     }
 }
 
+function shapeClass()
+{
+    return {
+        x: 0,
+        y: 0,
+        height: defaultSize,
+        width: defaultSize,
+        angle: 0,
+        type: _type,
+        color: "blue",
+        index: drawnShapes.length+1
+    }
+}
+
 function getShapePos(div, shape)
 {
     const rect = div.getBoundingClientRect()
@@ -38,16 +52,7 @@ updateShape = function(shape, div)
 
 addShape = function(div, _type)
 {
-    const shape = {
-        x: 0,
-        y: 0,
-        height: defaultSize,
-        width: defaultSize,
-        angle: 0,
-        type: _type,
-        color: "blue",
-        index: drawnShapes.length+1
-    }
+    const shape = shapeClass();
 
     div.onmousedown = (e) => {onMouseDown(e, shape)}
     div.onmouseup = (e) => {

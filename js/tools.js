@@ -1,8 +1,28 @@
+let originalTool=tool;
+let ghostShape;
 
 function setTool(t)
 {
     tool = t;
     document.getElementById("top-bar").dataset.tool = t;
+    
+    if (ghostShape)
+    {
+        ghostShape.div.Destroy()
+        ghostShape=null;
+    }
+    
+    switch(tool)
+    {
+        case "square":
+            ghostShape = shapeClass();
+            const div = document.createElement("div");
+            
+            div.classList.add("shape");
+            document.getElementById("shape-container").appenChild(div);
+            break;
+    }
+    
 }
 
 function onMouseDown(e, div, shape)
@@ -29,4 +49,6 @@ function onMouseDown(e, div, shape)
 document.onmousemove = (e) => {
     const mouseX = e.clientX
     const mouseY = e.clientX
+    
+    
 }

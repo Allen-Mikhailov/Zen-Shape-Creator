@@ -4,7 +4,7 @@ function getMousePos(x, y)
 
     return {
         x: ( x - rect.left ) / rect.width  * 100,
-        y: ( x - rect.top )  / rect.height * 100,
+        y: ( y - rect.top )  / rect.height * 100,
     }
 }
 

@@ -11,3 +11,5 @@ let defaultSize = 10;
 let tool;
 let onMouseDown;
 let dragData;
+
+onMouseDown

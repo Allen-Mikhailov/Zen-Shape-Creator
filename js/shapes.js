@@ -8,7 +8,7 @@ function getMousePos(x, y)
     }
 }
 
-function shapeClass()
+function shapeClass(_type)
 {
     return {
         x: 0,
@@ -52,9 +52,9 @@ updateShape = function(shape, div)
 
 addShape = function(div, _type)
 {
-    const shape = shapeClass();
+    const shape = shapeClass(_type);
 
-    div.onmousedown = (e) => {onMouseDown(e, shape)}
+    div.onmousedown = (e) => {MouseDown(e, shape)}
     div.onmouseup = (e) => {
         if (dragData == shape)
             dragData = null

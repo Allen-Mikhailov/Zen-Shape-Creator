@@ -153,30 +153,30 @@ $button-size: 3.5vh;
     background-image: url("../img/triangle.png");
 }
 
-#top-bar[data-tool="move"] > div > #move-tool {
+#top-bar[data-tool="move"] #move-tool {
     @include tool-selected()
 }
 
-#top-bar[data-tool="rotate"] > div > #rotate-tool {
+#top-bar[data-tool="rotate"] #rotate-tool {
     @include tool-selected()
 }
 
-#top-bar[data-tool="scale"] > div > #scale-tool {
+#top-bar[data-tool="scale"] #scale-tool {
     @include tool-selected()
 }
 
-#top-bar[data-tool="color"] > div > #color-tool {
+#top-bar[data-tool="color"] #color-tool {
     @include tool-selected()
 }
 
-#top-bar[data-tool="square"] > div > #square-tool {
+#top-bar[data-tool="square"] #square-tool {
     @include tool-selected()
 }
 
-#top-bar[data-tool="triangle"] > div > #triangle-tool {
+#top-bar[data-tool="triangle"] #triangle-tool {
     @include tool-selected()
 }
 
-#top-bar[data-tool="semi-circle"] > div > #semi-circle-tool {
+#top-bar[data-tool="semi-circle"] #semi-circle-tool {
     @include tool-selected()
 }

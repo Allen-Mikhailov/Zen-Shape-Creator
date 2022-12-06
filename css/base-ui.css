@@ -10,6 +10,13 @@ body {
   font-family: Consolas, "Courier New", monospace;
 }
 
+#shapes-section {
+  position: absolute;
+  visibility: hidden;
+  width: 50%;
+  height: 50%;
+}
+
 #top-bar {
   position: absolute;
   width: 100vw;
@@ -120,52 +127,52 @@ body {
   background-image: url("../img/triangle.png");
 }
 
-#top-bar[data-tool=move] > div > #move-tool {
+#top-bar[data-tool=move] #move-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=move] > div > #move-tool > div {
+#top-bar[data-tool=move] #move-tool > div {
   filter: invert(100%) !important;
 }
 
-#top-bar[data-tool=rotate] > div > #rotate-tool {
+#top-bar[data-tool=rotate] #rotate-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=rotate] > div > #rotate-tool > div {
+#top-bar[data-tool=rotate] #rotate-tool > div {
   filter: invert(100%) !important;
 }
 
-#top-bar[data-tool=scale] > div > #scale-tool {
+#top-bar[data-tool=scale] #scale-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=scale] > div > #scale-tool > div {
+#top-bar[data-tool=scale] #scale-tool > div {
   filter: invert(100%) !important;
 }
 
-#top-bar[data-tool=color] > div > #color-tool {
+#top-bar[data-tool=color] #color-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=color] > div > #color-tool > div {
+#top-bar[data-tool=color] #color-tool > div {
   filter: invert(100%) !important;
 }
 
-#top-bar[data-tool=square] > div > #square-tool {
+#top-bar[data-tool=square] #square-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=square] > div > #square-tool > div {
+#top-bar[data-tool=square] #square-tool > div {
   filter: invert(100%) !important;
 }
 
-#top-bar[data-tool=triangle] > div > #triangle-tool {
+#top-bar[data-tool=triangle] #triangle-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=triangle] > div > #triangle-tool > div {
+#top-bar[data-tool=triangle] #triangle-tool > div {
   filter: invert(100%) !important;
 }
 
-#top-bar[data-tool=semi-circle] > div > #semi-circle-tool {
+#top-bar[data-tool=semi-circle] #semi-circle-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
-#top-bar[data-tool=semi-circle] > div > #semi-circle-tool > div {
+#top-bar[data-tool=semi-circle] #semi-circle-tool > div {
   filter: invert(100%) !important;
 }
 

@@ -39,7 +39,7 @@ function getShapeTransform(shape)
 
     const posString = `translate(${shape.x}%, ${shape.y}%)`
     const rotationString = `rotateZ(${shape.angle}deg)`
-    const sizeString = `scale(${shape.width}%, ${shape.height}%)`
+    const sizeString = `scale(${shape.width*10}%, ${shape.height*10}%)`
     // Base 
     return `${posString} ${originApply} ${rotationString} ${originUndo} ${sizeString}`
 }
@@ -65,4 +65,17 @@ addShape = function(div, _type)
 
     drawnShapes.push(shape)
     drawnDivs.push(div)
+}
+
+function SquareBase()
+{
+    const baseGroup = document.createElementNS(NSSvg, "g")
+    const square = document.createElementNS(NSSvg, "path")
+
+    square.setAttribute("d", squarePath)
+    square.classList.add("square")
+
+    baseGroup.appendChild(square)
+
+    return baseGroup
 }

@@ -17,7 +17,7 @@ function setTool(t)
     {
         case "square":
             ghostShape = shapeClass("square");
-            const div = document.createElement("div");
+            const div = SquareBase()
             ghostDiv = div;
             
             div.classList.add("shape");
@@ -52,7 +52,6 @@ document.onmousemove = (e) => {
     if (ghostShape)
     {
         const apos = getMousePos(e.clientX, e.clientY);
-        console.log(apos)
         ghostShape.x = apos.x;
         ghostShape.y = apos.y;
         updateShape(ghostShape, ghostDiv);

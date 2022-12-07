@@ -18,6 +18,10 @@
     pointer-events: all;
 }
 
+.ghost {
+    opacity: .25;
+}
+
 path {
     fill: currentColor;
 }

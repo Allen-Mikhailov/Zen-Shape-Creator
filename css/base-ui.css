@@ -27,16 +27,9 @@ body {
 
 #title {
   font-size: 4vh;
-  top: 1.25vh;
-  left: 1.25vh;
-  position: absolute;
-}
-
-#section-picker {
+  margin-top: 1.25vh;
+  margin-left: 1.25vh;
   display: inline;
-  position: absolute;
-  left: 26%;
-  top: 14%;
 }
 
 .section-picker-button {
@@ -49,12 +42,12 @@ body {
   transition-duration: 0.5s;
 }
 
-#top-bar[data-section=shapes] > div > #section-picker-shapes {
+#top-bar[data-section=shapes] #section-picker-shapes {
   color: #bdbdbd;
   border-bottom: 2px solid #ffc400;
 }
 
-#top-bar[data-section=settings] > div > #section-picker-settings {
+#top-bar[data-section=settings] #section-picker-settings {
   color: #bdbdbd;
   border-bottom: 2px solid #ffc400;
 }
@@ -71,6 +64,18 @@ body {
 
 #edit-tool-selection {
   left: 18vh;
+}
+
+#shape-color-input {
+  position: absolute;
+  top: 7vh;
+  left: 35vh;
+  width: 5.25vh;
+  height: 3.5vh;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+  color: transparent;
 }
 
 .tool-button {

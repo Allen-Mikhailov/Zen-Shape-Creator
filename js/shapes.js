@@ -27,8 +27,8 @@ function getShapePos(div, shape)
     const rect = div.getBoundingClientRect()
     const containerRect = document.getElementById("shape-container").getBoundingClientRect()
     return {
-        x: rect.left + containerRect.width / 20 * shape.width/2,
-        y: rect.top + containerRect.height / 20 * shape.height/2,
+        x: rect.left,
+        y: rect.top,
     }
 }
 
@@ -54,17 +54,15 @@ addShape = function(div, _type)
 {
     const shape = shapeClass(_type);
 
-    div.onmousedown = (e) => {MouseDown(e, shape)}
-    div.onmouseup = (e) => {
-        if (dragData == shape)
-            dragData = null
-    }
+    div.onmousedown = (e) => {MouseDown(e, div, shape)}
 
     div.classList.add("shape")
     updateShape(shape, div)
 
     drawnShapes.push(shape)
     drawnDivs.push(div)
+
+    return shape
 }
 
 function SquareBase()

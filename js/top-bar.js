@@ -3,7 +3,7 @@ let section;
 function setSection(sect)
 {
     section = sect;
-    topBar.dataset.section = sect
+    document.getElementById("top-bar").dataset.section = sect
 }
 
 document.getElementById("section-picker-shapes").onclick = () => setSection("shapes")

@@ -1,0 +1,89 @@
+@use "./vars.scss" as *;
+
+@mixin tool-selected {
+    background-color: $selected-tool !important;
+    & > div {
+        filter: invert(100%) !important;
+    }
+}
+
+#move-tool > div {
+    background-image: url("../img/move.png");
+}
+
+#rotate-tool > div{
+    background-image: url("../img/rotate.png");
+}
+
+#scale-tool > div {
+    background-image: url("../img/scale.png");
+}
+
+#color-tool > div {
+    background-image: url("../img/color.png");
+}
+
+#square-tool > div {
+    background-image: url("../img/square.png");
+}
+
+#semi-circle-tool > div{
+    background-image: url("../img/semi-circle.png");
+}
+
+#triangle-tool > div {
+    background-image: url("../img/triangle.png");
+}
+
+#push-up-tool > div {
+    background-image: url("../img/arrow.png");
+}
+
+#push-down-tool > div {
+    background-image: url("../img/arrow.png");
+    rotate: 180deg;
+}
+
+#delete-tool > div {
+    background-image: url("../img/delete.png");
+}
+
+#top-bar[data-tool="move"] #move-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="rotate"] #rotate-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="scale"] #scale-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="color"] #color-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="square"] #square-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="triangle"] #triangle-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="semi-circle"] #semi-circle-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="push-up"] #push-up-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="push-down"] #push-down-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="delete"] #delete-tool {
+    @include tool-selected()
+}

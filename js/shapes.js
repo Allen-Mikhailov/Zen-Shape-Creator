@@ -1,3 +1,5 @@
+let shapeCount = 0
+
 function getMousePos(x, y)
 {
     const rect = document.getElementById("shape-container").getBoundingClientRect()
@@ -18,8 +20,7 @@ function shapeClass(_type)
         angle: 0,
         type: _type,
         color: "blue",
-        index: drawnShapes.length+1,
-        zindex: 1
+        index: -1
     }
 }
 
@@ -72,6 +73,9 @@ addShape = function(div, _type)
     drawnShapes.push(shape)
     drawnDivs.push(div)
 
+    shape.index = shapeCount;
+    shapeCount++;
+
     return shape
 }
 
@@ -101,7 +105,7 @@ function TriangleBase()
     return baseGroup
 }
 
-function HalfCircleBase()
+function SemiCircleBase()
 {
     const baseGroup = document.createElementNS(NSSvg, "g")
     const square = document.createElementNS(NSSvg, "path")

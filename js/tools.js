@@ -5,9 +5,16 @@ let ghostDiv;
 let moveGrid = 1
 let rotateGrid = 5
 
+let changes
+
 function getColor()
 {
     return document.getElementById("shape-color-input").value;
+}
+
+function shapeTool()
+{
+    return tool == "square" || tool == "triangle" || tool == "semi-circle"
 }
 
 function grid(value, gri) {
@@ -24,20 +31,30 @@ function setTool(t)
         ghostDiv.remove()
         ghostShape=null;
     }
-    
-    switch(tool)
-    {
-        case "square":
-            ghostShape = shapeClass("square");
-            const div = SquareBase()
-            ghostDiv = div;
 
-            ghostShape.color = getColor()
-            
-            div.classList.add("shape");
-            div.classList.add("ghost");
-            document.getElementById("shape-container").appendChild(div);
-            break;
+    if (shapeTool())
+    {
+        switch(tool)
+        {
+            case "square":
+                ghostShape = shapeClass("square");
+                ghostDiv = SquareBase()
+                break;
+            case "triangle":
+                ghostShape = shapeClass("triangle");
+                ghostDiv = TriangleBase()
+                break;
+            case "semi-circle":
+                ghostShape = shapeClass("semi-circle");
+                ghostDiv = SemiCircleBase()
+                break;
+        }
+
+        ghostShape.color = getColor()   
+        ghostDiv.classList.add("shape");
+        ghostDiv.classList.add("ghost");
+        document.getElementById("shape-container").appendChild(ghostDiv);
+        updateShape(ghostShape, ghostDiv)
     }
     
 }
@@ -79,6 +96,10 @@ function MouseDown(e, div, shape)
             updateShape(shape, div)
             break;
 
+        case "delete":
+            div.remove()
+            drawnShapes[shape.index] = null
+
         case "push-up":
             if(div.nextElementSibling)
             div.parentNode.insertBefore(div.nextElementSibling, div);
@@ -96,19 +117,35 @@ document.onmousedown = (e) => {
 
     if (apos.x < 0 || apos.x > 100 || apos.y < 0 || apos.y > 100) return;
 
-    console.log(apos)
-    switch(tool)
+    if (shapeTool())
     {
-        case "square":
-            const div = SquareBase()
-            const newShape = addShape(div, "square");
-            document.getElementById("shape-container").appendChild(div);
-            newShape.x = grid(apos.x, moveGrid)
-            newShape.y = grid(apos.y, moveGrid)
-            newShape.color = getColor()
-            updateShape(newShape, div)
-            break;
+        let div, newShape
+        switch(tool)
+        {
+            case "square":
+                div = SquareBase()
+                newShape = addShape(div, "square");
+                break;
+
+            case "triangle":
+                div = TriangleBase()
+                newShape = addShape(div, "triangle");
+                break;
+
+            case "semi-circle":
+                div = SemiCircleBase()
+                newShape = addShape(div, "semi-circle");
+                break;
+                    
+        }
+
+        document.getElementById("shape-container").appendChild(div);
+        newShape.x = grid(apos.x, moveGrid)
+        newShape.y = grid(apos.y, moveGrid)
+        newShape.color = getColor()
+        updateShape(newShape, div)
     }
+    
 }
 
 document.onmouseup = (e) => {

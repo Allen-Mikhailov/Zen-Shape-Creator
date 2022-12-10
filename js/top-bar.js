@@ -19,6 +19,7 @@ document.getElementById("color-tool").onclick = () => setTool("color")
 document.getElementById("square-tool").onclick = () => setTool("square")
 document.getElementById("triangle-tool").onclick = () => setTool("triangle")
 document.getElementById("semi-circle-tool").onclick = () => setTool("semi-circle")
+document.getElementById("delete-tool").onclick = () => setTool("delete")
 
 document.getElementById("push-up-tool").onclick = () => setTool("push-up")
 document.getElementById("push-down-tool").onclick = () => setTool("push-down")

@@ -2,9 +2,16 @@ let originalTool=tool;
 let ghostShape;
 let ghostDiv;
 
+let moveGrid = 1
+let rotateGrid = 5
+
 function getColor()
 {
     return document.getElementById("shape-color-input").value;
+}
+
+function grid(value, gri) {
+    return Math.floor(value / gri) * gri
 }
 
 function setTool(t)
@@ -37,9 +44,15 @@ function setTool(t)
 
 function MouseDown(e, div, shape)
 {
-    const shapePos = getShapePos(div, shape)
+    const shapePos = getShapePos(div)
+    const shapeMid = getShapeMid(div)
 
-    console.log(e.clientX, shapePos.x)
+    const originalAngle = Math.atan2(
+        e.clientY - shapeMid.y, 
+        e.clientX - shapeMid.x) 
+    / Math.PI * 180;
+
+    startingAngle = (shape.angle || 0) - originalAngle;
 
     dragData = {
         shape: shape,
@@ -52,24 +65,46 @@ function MouseDown(e, div, shape)
             x: e.clientX-shapePos.x,
             y: e.clientY-shapePos.y,
         },
+        shapeMid: shapeMid,
         startShapePos: shapePos,
+        angle: startingAngle,
 
         original: structuredClone(shape)
     }
 
-    e.preventDefault()
+    switch (tool)
+    {
+        case "color":
+            shape.color = getColor()
+            updateShape(shape, div)
+            break;
+
+        case "push-up":
+            if(div.nextElementSibling)
+            div.parentNode.insertBefore(div.nextElementSibling, div);
+            break;
+
+        case "push-down":
+            if(div.previousElementSibling)
+            div.parentNode.insertBefore(div, div.previousElementSibling);
+            break;
+    }
 }
 
 document.onmousedown = (e) => {
     const apos = getMousePos(e.clientX, e.clientY);
+
+    if (apos.x < 0 || apos.x > 100 || apos.y < 0 || apos.y > 100) return;
+
+    console.log(apos)
     switch(tool)
     {
         case "square":
             const div = SquareBase()
             const newShape = addShape(div, "square");
             document.getElementById("shape-container").appendChild(div);
-            newShape.x = apos.x
-            newShape.y = apos.y
+            newShape.x = grid(apos.x, moveGrid)
+            newShape.y = grid(apos.y, moveGrid)
             newShape.color = getColor()
             updateShape(newShape, div)
             break;
@@ -84,8 +119,8 @@ document.onmousemove = (e) => {
     if (ghostShape)
     {
         const apos = getMousePos(e.clientX, e.clientY);
-        ghostShape.x = apos.x;
-        ghostShape.y = apos.y;
+        ghostShape.x = grid(apos.x, moveGrid);
+        ghostShape.y = grid(apos.y, moveGrid);
         updateShape(ghostShape, ghostDiv);
     }
 
@@ -100,9 +135,18 @@ document.onmousemove = (e) => {
                     e.clientY - dragData.offset.y
                 );
         
-                dragData.shape.x = apos.x;
-                dragData.shape.y = apos.y;
+                dragData.shape.x = grid(apos.x, moveGrid);
+                dragData.shape.y = grid(apos.y, moveGrid);
                 updateShape(dragData.shape, dragData.div);
+
+                break;
+
+            case "rotate":
+                const angle = Math.atan2(e.clientY - dragData.shapeMid.y, e.clientX - dragData.shapeMid.x)
+                dragData.shape.angle = grid(dragData.angle + angle / Math.PI * 180, rotateGrid)
+                updateShape(dragData.shape, dragData.div);
+
+                break;
         }
     }
 }

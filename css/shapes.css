@@ -8,6 +8,7 @@
   border-color: #1A1F29;
   border-width: 2px;
   border-style: solid;
+  z-index: 100000;
 }
 
 .shape {

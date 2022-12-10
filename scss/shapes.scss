@@ -11,6 +11,7 @@
     border-color: $line-color;
     border-width: $border-size;
     border-style: solid;
+    z-index: 100000;
 }
 
 .shape {

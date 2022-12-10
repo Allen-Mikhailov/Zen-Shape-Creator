@@ -18,17 +18,26 @@ function shapeClass(_type)
         angle: 0,
         type: _type,
         color: "blue",
-        index: drawnShapes.length+1
+        index: drawnShapes.length+1,
+        zindex: 1
     }
 }
 
 function getShapePos(div, shape)
 {
     const rect = div.getBoundingClientRect()
-    const containerRect = document.getElementById("shape-container").getBoundingClientRect()
     return {
         x: rect.left,
         y: rect.top,
+    }
+}
+
+function getShapeMid(div)
+{
+    const rect = div.getBoundingClientRect()
+    return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
     }
 }
 
@@ -48,6 +57,7 @@ updateShape = function(shape, div)
 {
     div.style.transform = getShapeTransform(shape)
     div.style.color = shape.color
+    div.style.zIndex = shape.zindex
 }
 
 addShape = function(div, _type)
@@ -72,6 +82,32 @@ function SquareBase()
 
     square.setAttribute("d", squarePath)
     square.classList.add("square")
+
+    baseGroup.appendChild(square)
+
+    return baseGroup
+}
+
+function TriangleBase()
+{
+    const baseGroup = document.createElementNS(NSSvg, "g")
+    const square = document.createElementNS(NSSvg, "path")
+
+    square.setAttribute("d", trianglePath)
+    square.classList.add("triangle")
+
+    baseGroup.appendChild(square)
+
+    return baseGroup
+}
+
+function HalfCircleBase()
+{
+    const baseGroup = document.createElementNS(NSSvg, "g")
+    const square = document.createElementNS(NSSvg, "path")
+
+    square.setAttribute("d", halfCirclePath)
+    square.classList.add("semi-circle")
 
     baseGroup.appendChild(square)
 

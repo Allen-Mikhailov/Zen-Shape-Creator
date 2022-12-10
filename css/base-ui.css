@@ -66,10 +66,14 @@ body {
   left: 18vh;
 }
 
+#zindex-tool-selection {
+  left: 35vh;
+}
+
 #shape-color-input {
   position: absolute;
   top: 7vh;
-  left: 35vh;
+  left: 45vh;
   width: 5.25vh;
   height: 3.5vh;
   border: none;
@@ -84,7 +88,7 @@ body {
   height: 3.5vh;
   display: inline-block;
   border-radius: 1vh;
-  margin-right: 0.5vh;
+  margin-right: 0.25vh;
   transition: background-color 0.5s;
 }
 .tool-button:hover {
@@ -130,6 +134,15 @@ body {
 
 #triangle-tool > div {
   background-image: url("../img/triangle.png");
+}
+
+#push-up-tool > div {
+  background-image: url("../img/arrow.png");
+}
+
+#push-down-tool > div {
+  background-image: url("../img/arrow.png");
+  rotate: 180deg;
 }
 
 #top-bar[data-tool=move] #move-tool {
@@ -178,6 +191,20 @@ body {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
 #top-bar[data-tool=semi-circle] #semi-circle-tool > div {
+  filter: invert(100%) !important;
+}
+
+#top-bar[data-tool=push-up] #push-up-tool {
+  background-color: rgba(171, 192, 241, 0.4509803922) !important;
+}
+#top-bar[data-tool=push-up] #push-up-tool > div {
+  filter: invert(100%) !important;
+}
+
+#top-bar[data-tool=push-down] #push-down-tool {
+  background-color: rgba(171, 192, 241, 0.4509803922) !important;
+}
+#top-bar[data-tool=push-down] #push-down-tool > div {
   filter: invert(100%) !important;
 }
 

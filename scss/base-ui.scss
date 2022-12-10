@@ -84,11 +84,15 @@ $button-size: 3.5vh;
     left: 18vh;
 }
 
+#zindex-tool-selection {
+    left: 35vh;
+}
+
 #shape-color-input {
     position: absolute;
 
     top: 7vh;
-    left: 35vh;
+    left: 45vh;
     width: calc($button-size * 1.5);
     height: $button-size;
 
@@ -105,7 +109,7 @@ $button-size: 3.5vh;
     display: inline-block;
 
     border-radius: 1vh;
-    margin-right: .5vh;
+    margin-right: .25vh;
 
     transition: background-color .5s;
 
@@ -167,6 +171,15 @@ $button-size: 3.5vh;
     background-image: url("../img/triangle.png");
 }
 
+#push-up-tool > div {
+    background-image: url("../img/arrow.png");
+}
+
+#push-down-tool > div {
+    background-image: url("../img/arrow.png");
+    rotate: 180deg;
+}
+
 #top-bar[data-tool="move"] #move-tool {
     @include tool-selected()
 }
@@ -192,5 +205,13 @@ $button-size: 3.5vh;
 }
 
 #top-bar[data-tool="semi-circle"] #semi-circle-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="push-up"] #push-up-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="push-down"] #push-down-tool {
     @include tool-selected()
 }

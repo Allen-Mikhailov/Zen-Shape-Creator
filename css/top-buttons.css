@@ -39,6 +39,14 @@
   background-image: url("../img/delete.png");
 }
 
+#save-pattern-tool > div {
+  background-image: url("../img/pattern.png");
+}
+
+#compile-tool > div {
+  background-image: url("../img/compile.png");
+}
+
 #top-bar[data-tool=move] #move-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }

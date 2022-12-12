@@ -48,6 +48,14 @@
     background-image: url("../img/delete.png");
 }
 
+#save-pattern-tool > div {
+    background-image: url("../img/pattern.png");
+}
+
+#compile-tool > div {
+    background-image: url("../img/compile.png");
+}
+
 #top-bar[data-tool="move"] #move-tool {
     @include tool-selected()
 }

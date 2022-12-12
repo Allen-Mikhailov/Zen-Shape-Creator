@@ -34,7 +34,29 @@
                     <div id="push-down-tool" class="tool-button"><div></div></div>
                 </div>
 
-                <input type="color" id="shape-color-input">
+                <div id="pattern-tool-selection" class="tool-selection">
+                    <div id="save-pattern-tool" class="tool-button"><div></div></div>
+                    <div id="compile-tool" class="tool-button"><div></div></div>
+                </div>
+
+                <div>
+                    <div id="scale-direction-selection" class="tool-selection">
+                        <div id="scale-x-button" class="tool-button"><div></div></div>
+                        <div id="scale-y-button" class="tool-button"><div></div></div>
+                    </div>
+                </div>
+
+                <div id="tool-data-container">
+                    <div id="color-data" class="tool-data">
+                        <input type="color" id="shape-color-input">
+                    </div>
+                    <div id="scale-tool-data" class="tool-data">
+                        <div id="scale-direction-selection" class="tool-selection">
+                            <div id="scale-x-button" class="tool-button"><div></div></div>
+                            <div id="scale-y-button" class="tool-button"><div></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -49,6 +71,7 @@
         <script src="./js/shapes.js"></script>
         <script src="./js/tools.js"></script>
         <script src="./js/top-bar.js"></script>
+        <script src="./js/patterns.js"></script>
 
         <!-- <div id="compileDisplay">
             <code id="compiledText"></code>

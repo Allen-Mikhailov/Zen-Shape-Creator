@@ -12,16 +12,16 @@ body {
     font-family: Consolas, 'Courier New', monospace;
 }
 
-@mixin top-bar-section {
-    position: absolute;
-    visibility: hidden;
-    width: 50%;
-    height: 50%;
-}
+// @mixin top-bar-section {
+//     position: absolute;
+//     visibility: hidden;
+//     width: 50%;
+//     height: 50%;
+// }
 
-#shapes-section {
-    @include top-bar-section;
-}
+// #shapes-section {
+//     @include top-bar-section;
+// }
 
 #top-bar {
     position: absolute;
@@ -88,11 +88,14 @@ $button-size: 3.5vh;
     left: 39vh;
 }
 
+#pattern-tool-selection {
+    left: 49vh;
+}
+
 #shape-color-input {
     position: absolute;
 
     top: 7vh;
-    left: 49vh;
     width: calc($button-size * 1.5);
     height: $button-size;
 
@@ -134,4 +137,19 @@ $button-size: 3.5vh;
 
         transition: filter .5s;
     }
+}
+
+#tool-data-container {
+    position: absolute;
+    left: 59vh;
+    top: 0vh;
+}
+
+.tool-data {
+    visibility: hidden;
+    display:inline-block;
+}
+
+#scale-tool-data {
+    visibility: visible;
 }

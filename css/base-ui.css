@@ -10,13 +10,6 @@ body {
   font-family: Consolas, "Courier New", monospace;
 }
 
-#shapes-section {
-  position: absolute;
-  visibility: hidden;
-  width: 50%;
-  height: 50%;
-}
-
 #top-bar {
   position: absolute;
   width: 100vw;
@@ -70,10 +63,13 @@ body {
   left: 39vh;
 }
 
+#pattern-tool-selection {
+  left: 49vh;
+}
+
 #shape-color-input {
   position: absolute;
   top: 7vh;
-  left: 49vh;
   width: 5.25vh;
   height: 3.5vh;
   border: none;
@@ -106,6 +102,21 @@ body {
   background-position: center center;
   filter: invert(100%) brightness(50%);
   transition: filter 0.5s;
+}
+
+#tool-data-container {
+  position: absolute;
+  left: 59vh;
+  top: 0vh;
+}
+
+.tool-data {
+  visibility: hidden;
+  display: inline-block;
+}
+
+#scale-tool-data {
+  visibility: visible;
 }
 
 /*# sourceMappingURL=base-ui.css.map */

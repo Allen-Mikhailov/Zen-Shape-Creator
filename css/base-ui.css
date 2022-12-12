@@ -53,6 +53,8 @@ body {
   height: 3.5vh;
   border-radius: 1vh;
   font-size: 0px;
+  display: flex;
+  flex-direction: row;
 }
 
 #edit-tool-selection {
@@ -64,25 +66,14 @@ body {
 }
 
 #pattern-tool-selection {
-  left: 49vh;
-}
-
-#shape-color-input {
-  position: absolute;
-  top: 7vh;
-  width: 5.25vh;
-  height: 3.5vh;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-  color: transparent;
+  left: 56vh;
 }
 
 .tool-button {
   /* position: absolute; */
   width: 3.5vh;
   height: 3.5vh;
-  display: inline-block;
+  display: flex;
   border-radius: 1vh;
   margin-right: 0.25vh;
   transition: background-color 0.5s;
@@ -106,8 +97,17 @@ body {
 
 #tool-data-container {
   position: absolute;
-  left: 59vh;
-  top: 0vh;
+  left: 66vh;
+  top: 7vh;
+}
+
+#shape-color-input {
+  width: 5.25vh;
+  height: 3.5vh;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+  color: transparent;
 }
 
 .tool-data {
@@ -115,8 +115,17 @@ body {
   display: inline-block;
 }
 
-#scale-tool-data {
+:is([data-tool=square], [data-tool=triangle], [data-tool=semi-circle], [data-tool=color]) #color-tool-data {
   visibility: visible;
+}
+
+[data-tool=scale] #scale-tool-data {
+  visibility: visible;
+}
+
+#scale-direction-bar {
+  left: 0px;
+  top: 0px;
 }
 
 /*# sourceMappingURL=base-ui.css.map */

@@ -109,6 +109,13 @@ function MouseDown(e, div, shape)
             if(div.previousElementSibling)
             div.parentNode.insertBefore(div, div.previousElementSibling);
             break;
+
+        case "push-hard-up":
+            div.parentNode.appendChild(div)
+            break;
+        case "push-hard-down":
+            div.parentNode.prepend(div)
+            break;
     }
 }
 

@@ -21,8 +21,10 @@ document.getElementById("triangle-tool").onclick = () => setTool("triangle")
 document.getElementById("semi-circle-tool").onclick = () => setTool("semi-circle")
 document.getElementById("delete-tool").onclick = () => setTool("delete")
 
+document.getElementById("push-hard-up-tool").onclick = () => setTool("push-hard-up")
 document.getElementById("push-up-tool").onclick = () => setTool("push-up")
 document.getElementById("push-down-tool").onclick = () => setTool("push-down")
+document.getElementById("push-hard-down-tool").onclick = () => setTool("push-hard-down")
 
 // document.getElementById("save-pattern-tool").onclick = () => setTool("save-pattern")
 // document.getElementById("compile-tool").onclick = () => setTool("compile")

@@ -78,6 +78,9 @@ $button-size: 3.5vh;
     height: $button-size;
     border-radius: 1vh;
     font-size: 0px;
+
+    display: flex;
+    flex-direction: row;
 }
 
 #edit-tool-selection {
@@ -89,27 +92,14 @@ $button-size: 3.5vh;
 }
 
 #pattern-tool-selection {
-    left: 49vh;
-}
-
-#shape-color-input {
-    position: absolute;
-
-    top: 7vh;
-    width: calc($button-size * 1.5);
-    height: $button-size;
-
-    border: none;
-    padding: 0px;
-    background-color: transparent;
-    color: transparent;
+    left: 56vh;
 }
 
 .tool-button {
     /* position: absolute; */
     width: $button-size;
     height: $button-size;
-    display: inline-block;
+    display: flex;
 
     border-radius: 1vh;
     margin-right: .25vh;
@@ -141,8 +131,18 @@ $button-size: 3.5vh;
 
 #tool-data-container {
     position: absolute;
-    left: 59vh;
-    top: 0vh;
+    left: 66vh;
+    top: 7vh;
+}
+
+#shape-color-input {
+    width: calc($button-size * 1.5);
+    height: $button-size;
+
+    border: none;
+    padding: 0px;
+    background-color: transparent;
+    color: transparent;
 }
 
 .tool-data {
@@ -150,6 +150,15 @@ $button-size: 3.5vh;
     display:inline-block;
 }
 
-#scale-tool-data {
+:is([data-tool="square"], [data-tool="triangle"], [data-tool="semi-circle"], [data-tool="color"]) #color-tool-data {
     visibility: visible;
+ }
+
+ [data-tool="scale"] #scale-tool-data {
+    visibility: visible;
+}
+
+#scale-direction-bar {
+    left: 0px;
+    top: 0px;
 }

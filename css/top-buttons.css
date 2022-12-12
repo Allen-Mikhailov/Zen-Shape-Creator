@@ -26,12 +26,21 @@
   background-image: url("../img/triangle.png");
 }
 
+#push-hard-up-tool > div {
+  background-image: url("../img/double-arrow.png");
+}
+
 #push-up-tool > div {
   background-image: url("../img/arrow.png");
 }
 
 #push-down-tool > div {
   background-image: url("../img/arrow.png");
+  rotate: 180deg;
+}
+
+#push-hard-down-tool > div {
+  background-image: url("../img/double-arrow.png");
   rotate: 180deg;
 }
 
@@ -96,6 +105,13 @@
   filter: invert(100%) !important;
 }
 
+#top-bar[data-tool=push-hard-up] #push-hard-up-tool {
+  background-color: rgba(171, 192, 241, 0.4509803922) !important;
+}
+#top-bar[data-tool=push-hard-up] #push-hard-up-tool > div {
+  filter: invert(100%) !important;
+}
+
 #top-bar[data-tool=push-up] #push-up-tool {
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
@@ -107,6 +123,13 @@
   background-color: rgba(171, 192, 241, 0.4509803922) !important;
 }
 #top-bar[data-tool=push-down] #push-down-tool > div {
+  filter: invert(100%) !important;
+}
+
+#top-bar[data-tool=push-hard-down] #push-hard-down-tool {
+  background-color: rgba(171, 192, 241, 0.4509803922) !important;
+}
+#top-bar[data-tool=push-hard-down] #push-hard-down-tool > div {
   filter: invert(100%) !important;
 }
 

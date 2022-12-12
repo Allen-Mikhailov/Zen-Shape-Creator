@@ -35,12 +35,21 @@
     background-image: url("../img/triangle.png");
 }
 
+#push-hard-up-tool > div {
+    background-image: url("../img/double-arrow.png");
+}
+
 #push-up-tool > div {
     background-image: url("../img/arrow.png");
 }
 
 #push-down-tool > div {
     background-image: url("../img/arrow.png");
+    rotate: 180deg;
+}
+
+#push-hard-down-tool > div {
+    background-image: url("../img/double-arrow.png");
     rotate: 180deg;
 }
 
@@ -84,11 +93,19 @@
     @include tool-selected()
 }
 
+#top-bar[data-tool="push-hard-up"] #push-hard-up-tool {
+    @include tool-selected()
+}
+
 #top-bar[data-tool="push-up"] #push-up-tool {
     @include tool-selected()
 }
 
 #top-bar[data-tool="push-down"] #push-down-tool {
+    @include tool-selected()
+}
+
+#top-bar[data-tool="push-hard-down"] #push-hard-down-tool {
     @include tool-selected()
 }
 

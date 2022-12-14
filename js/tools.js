@@ -116,6 +116,17 @@ function MouseDown(e, div, shape)
         case "push-hard-down":
             div.parentNode.prepend(div)
             break;
+        case "scale":
+            const dataset = document.getElementById("scale-tool-data").dataset;
+            
+            const val = parseInt(dataset.amount) * (dataset.sign == "pos"? 1:-1);
+
+            if (dataset.direction == "horizontal")
+                shape.width += val;
+            else 
+                shape.height += val;
+
+            updateShape(shape, div)
     }
 }
 

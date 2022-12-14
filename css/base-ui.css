@@ -128,4 +128,14 @@ body {
   top: 0px;
 }
 
+#scale-sign-bar {
+  left: 10vh;
+  top: 0px;
+}
+
+#scale-amount-bar {
+  left: 20vh;
+  top: 0px;
+}
+
 /*# sourceMappingURL=base-ui.css.map */

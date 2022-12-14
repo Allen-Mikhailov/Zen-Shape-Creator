@@ -8,61 +8,61 @@
 }
 
 #move-tool > div {
-    background-image: url("../img/move.png");
+    background-image: url("../img/icons/tool-bar/move.png");
 }
 
 #rotate-tool > div{
-    background-image: url("../img/rotate.png");
+    background-image: url("../img/icons/tool-bar/rotate.png");
 }
 
 #scale-tool > div {
-    background-image: url("../img/scale.png");
+    background-image: url("../img/icons/tool-bar/scale.png");
 }
 
 #color-tool > div {
-    background-image: url("../img/color.png");
+    background-image: url("../img/icons/tool-bar/color.png");
 }
 
 #square-tool > div {
-    background-image: url("../img/square.png");
+    background-image: url("../img/icons/tool-bar/square.png");
 }
 
 #semi-circle-tool > div{
-    background-image: url("../img/semi-circle.png");
+    background-image: url("../img/icons/tool-bar/semi-circle.png");
 }
 
 #triangle-tool > div {
-    background-image: url("../img/triangle.png");
+    background-image: url("../img/icons/tool-bar/triangle.png");
 }
 
 #push-hard-up-tool > div {
-    background-image: url("../img/double-arrow.png");
+    background-image: url("../img/icons/tool-bar/double-arrow.png");
 }
 
 #push-up-tool > div {
-    background-image: url("../img/arrow.png");
+    background-image: url("../img/icons/tool-bar/arrow.png");
 }
 
 #push-down-tool > div {
-    background-image: url("../img/arrow.png");
+    background-image: url("../img/icons/tool-bar/arrow.png");
     rotate: 180deg;
 }
 
 #push-hard-down-tool > div {
-    background-image: url("../img/double-arrow.png");
+    background-image: url("../img/icons/tool-bar/double-arrow.png");
     rotate: 180deg;
 }
 
 #delete-tool > div {
-    background-image: url("../img/delete.png");
+    background-image: url("../img/icons/tool-bar/delete.png");
 }
 
 #save-pattern-tool > div {
-    background-image: url("../img/pattern.png");
+    background-image: url("../img/icons/tool-bar/pattern.png");
 }
 
 #compile-tool > div {
-    background-image: url("../img/compile.png");
+    background-image: url("../img/icons/tool-bar/compile.png");
 }
 
 #top-bar[data-tool="move"] #move-tool {
@@ -110,5 +110,63 @@
 }
 
 #top-bar[data-tool="delete"] #delete-tool {
+    @include tool-selected()
+}
+
+// Scale Tool Bar
+#scale-x-button > div {
+    background-image: url("../img/icons/scale-tool-bar/expand.png");
+}
+
+#scale-y-button > div {
+    background-image: url("../img/icons/scale-tool-bar/expand.png");
+    rotate: 90deg;
+}
+
+#scale-tool-data[data-direction="horizontal"] #scale-x-button {
+    @include tool-selected()
+}
+
+#scale-tool-data[data-direction="vertical"] #scale-y-button {
+    @include tool-selected()
+}
+
+#scale-pos-button > div {
+    background-image: url("../img/icons/scale-tool-bar/positive.png");
+}
+
+#scale-neg-button > div {
+    background-image: url("../img/icons/scale-tool-bar/negative.png");
+}
+
+#scale-tool-data[data-sign="pos"] #scale-pos-button {
+    @include tool-selected()
+}
+
+#scale-tool-data[data-sign="neg"] #scale-neg-button {
+    @include tool-selected()
+}
+
+#scale-1-button > div {
+    background-image: url("../img/icons/scale-tool-bar/1.png");
+}
+
+#scale-5-button > div {
+    background-image: url("../img/icons/scale-tool-bar/5.png");
+}
+
+#scale-10-button > div {
+    background-image: url("../img/icons/scale-tool-bar/10.png");
+}
+
+#scale-tool-data[data-amount="1"] #scale-1-button {
+    @include tool-selected()
+}
+
+#scale-tool-data[data-amount="5"] #scale-5-button {
+    @include tool-selected()
+}
+
+#scale-tool-data[data-amount="10"] #scale-10-button {
     @include tool-selected()
 }

@@ -27,6 +27,9 @@ document.getElementById("push-up-tool").onclick = () => setTool("push-up")
 document.getElementById("push-down-tool").onclick = () => setTool("push-down")
 document.getElementById("push-hard-down-tool").onclick = () => setTool("push-hard-down")
 
+document.getElementById("save-pattern-tool").onclick = savePattern
+document.getElementById("compile-tool").onclick = compilePatterns
+
 // Scale Tool Bar
 
 document.getElementById("scale-x-button").onclick = () => document.getElementById("scale-tool-data").dataset.direction = "horizontal"

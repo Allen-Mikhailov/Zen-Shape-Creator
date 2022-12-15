@@ -1,0 +1,46 @@
+#compileDisplay {
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    border-radius: 2vw;
+    left: 20%;
+    top: 10%;
+    visibility: hidden;
+    overflow-x:hidden;
+
+    background-color: #4D4C7D;
+
+    border-width: 5px;
+    border-color: #363062;
+    border-style: solid;
+}
+
+#compiledText {
+    position: absolute;
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
+    left: 25px;
+    top: 25px;
+    word-wrap: normal;
+    color: #E9D5CA;
+
+    overflow-x:hidden;
+    overflow-y:scroll;
+
+    font-weight: 600;
+    font-size: large;
+    user-select: all;
+}
+
+#compiledText::-webkit-scrollbar {
+    display: none;
+  }
+
+#HideCompileDisplay {
+    position: absolute;
+    left: 93%;
+    top: 2%;
+    pointer-events: all;
+    color: #E9D5CA;
+    font-size: 40px;
+}

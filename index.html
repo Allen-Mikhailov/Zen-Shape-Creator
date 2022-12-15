@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="./css/base-ui.css">
         <link rel="stylesheet" href="./css/shapes.css">
         <link rel="stylesheet" href="./css/top-buttons.css">
+        <link rel="stylesheet" href="./css/compile-display.css">
     </head>
     <body>
         <div id="top-bar" data-section="shapes" data-tool="move">
@@ -68,18 +69,19 @@
             <!-- <rect class="GridLine verticalLine"></rect>
             <rect class="GridLine horizontalLine"></rect> -->
         </svg>
+
+        <div id="compileDisplay">
+            <code id="compiledText"></code>
+            <div id ="HideCompileDisplay">X</div>
+        </div>
         
         <script src="./js/templates.js"></script>
         <script src="./js/shared.js"></script>
         <script src="./js/settings.js"></script>
         <script src="./js/shapes.js"></script>
+        <script src="./js/history.js"></script>
         <script src="./js/tools.js"></script>
-        <script src="./js/top-bar.js"></script>
         <script src="./js/patterns.js"></script>
-
-        <!-- <div id="compileDisplay">
-            <code id="compiledText"></code>
-            <div id = "HideCompileDisplay">X</div>
-        </div>
+        <script src="./js/top-bar.js"></script>
     </body>
 </html>

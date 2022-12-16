@@ -28,7 +28,7 @@ document.getElementById("push-down-tool").onclick = () => setTool("push-down")
 document.getElementById("push-hard-down-tool").onclick = () => setTool("push-hard-down")
 
 document.getElementById("save-pattern-tool").onclick = savePattern
-document.getElementById("compile-tool").onclick = compilePatterns
+document.getElementById("compile-tool").onclick = downloadCompile
 
 // Scale Tool Bar
 

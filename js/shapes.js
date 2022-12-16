@@ -54,6 +54,16 @@ function getShapeTransform(shape)
     return `${posString} ${originApply} ${rotationString} ${originUndo} ${sizeString}`
 }
 
+function getShapeStyle(shape)
+{
+    return `
+    {
+        color: ${shape.color};
+        transform: ${getShapeTransform(shape)}
+    }
+    `
+}
+
 updateShape = function(shape, div)
 {
     div.style.transform = getShapeTransform(shape)

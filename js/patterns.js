@@ -59,21 +59,21 @@ function compilePatterns()
 
         let shapeSVG = ""
         switch(shape.type) {
-            case "Triangle":
+            case "triangle":
                 shapeSVG = `
 <g id="shape${shapeIndex}">
     <path class="TrianglePath" id="shapePath${shapeIndex}" d="${trianglePath}"></path>
 </g>
 `
                 break;
-            case "Square":
+            case "square":
                 shapeSVG = `
 <g id="shape${shapeIndex}">
     <path class="SquarePath" id="shapePath${shapeIndex}" d="${squarePath}"></path>
 </g>
 `           
                 break;
-            case "HalfCircle":
+            case "semi-circle":
                     shapeSVG = `
 <g id="shape${shapeIndex}">
     <path class="HalfCirclePath" id="shapePath${shapeIndex}" d="${halfCirclePath}"></path>
@@ -85,16 +85,16 @@ function compilePatterns()
 
         styleSheet += `
         @keyframes shape${shapeIndex}Anim {`
-        styleSheet += `${currentPercent}% ${sectForShape(shape.sects[patternCount - 1])}\n`
+        styleSheet += `${currentPercent}% ${getShapeStyle(shape.sects[patternCount - 1])}\n`
 
         for (let i = 0; i < patternCount; i++) {
-            styleSheet += `${currentPercent}% ${sectForShape(shape.sects[i])}`
+            styleSheet += `${currentPercent}% ${getShapeStyle(shape.sects[i])}`
             currentPercent += stallPercent
-            styleSheet += `${currentPercent}% ${sectForShape(shape.sects[i])}`
+            styleSheet += `${currentPercent}% ${getShapeStyle(shape.sects[i])}`
             currentPercent += TransitionPercent
         }
 
-        styleSheet += `100% ${sectForShape(shape.sects[0])}`
+        styleSheet += `100% ${getShapeStyle(shape.sects[0])}`
 
         styleSheet += `}`
 
@@ -113,15 +113,22 @@ function compilePatterns()
     svgFile = svgFile.replace("/* Styles */", styleSheet)
     console.log(svgFile)
 
-    // Displaying the compiled stuff
-    svgFile = svgFile.replaceAll("&", "&amp").replaceAll("<", "&lt").replaceAll(">", "&gt")
-    document.getElementById("compileDisplay").style.visibility = "visible"
-    document.getElementById("compiledText").innerHTML = svgFile
+    return svgFile
+    
 }
 
-function HideCompileDisplay()
+function downloadCompile()
 {
-    document.getElementById("compileDisplay").style.visibility = "hidden"
-}
+    const compiled = compilePatterns()
 
-document.getElementById("HideCompileDisplay").onclick = HideCompileDisplay
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(compiled));
+    element.setAttribute('download', "createdSVG.html");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}

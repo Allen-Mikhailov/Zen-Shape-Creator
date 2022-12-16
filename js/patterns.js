@@ -9,7 +9,8 @@ function savePattern()
     for (const child of document.getElementById("shape-container").children) {
         if (drawnDivs.indexOf(child) != -1)
         {
-            drawnShapes[drawnDivs.indexOf(child)].order = i;
+            const shape = drawnShapes[drawnDivs.indexOf(child)]
+            shape.order = i;
             i++;
         }
       }
@@ -26,6 +27,7 @@ function compilePatterns()
     let shapeCount = 0
     for (let shapeIndex in patterns[0]) {
         const shape = patterns[0][shapeIndex]
+        if (shape == null) {continue}
         shapes.push({
             type: shape.type,
             sects: []
